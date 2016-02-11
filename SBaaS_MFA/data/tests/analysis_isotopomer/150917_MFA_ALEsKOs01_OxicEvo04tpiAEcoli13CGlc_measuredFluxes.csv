@@ -1,0 +1,4 @@
+experiment_id,model_id,sample_name_abbreviation,rxn_id,flux_average,flux_stdev,flux_lb,flux_ub,flux_units,used_,comment_
+ALEsKOs01,150526_iDM2015,OxicEvo04tpiAEcoli13CGlc,EX_ac_LPAREN_e_RPAREN_,0.816500078,0.034476109,0.711608761,0.921391396,mmol*gDCW-1*hr-1,t,
+ALEsKOs01,150526_iDM2015,OxicEvo04tpiAEcoli13CGlc,Ec_biomass_iJO1366_WT_53p95M,0.184592381,0.000998685,0.181553947,0.187630815,hr-1,t,
+ALEsKOs01,150526_iDM2015,OxicEvo04tpiAEcoli13CGlc,EX_glc_LPAREN_e_RPAREN_,2.896413761,0.065124175,2.698277696,3.094549827,mmol*gDCW-1*hr-1,t,

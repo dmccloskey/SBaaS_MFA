@@ -1,0 +1,6 @@
+"id","experiment_id","model_id","mapping_id","sample_name_abbreviation","time_point","used_","comment_","simulation_id"
+145,"ALEsKOs01","150526_iDM2015","full05","OxicEvo04tpiAEcoli13CGlc","0",t,"","ALEsKOs01_150526_iDM2015_full05_OxicEvo04tpiAEcoli13CGlc_0"
+146,"ALEsKOs01","150526_iDM2015","full05","OxicEvo04tpiAEvo01EPEcoli13CGlc","11",t,"","ALEsKOs01_150526_iDM2015_full05_OxicEvo04tpiAEvo01EPEcoli13CGlc_11"
+147,"ALEsKOs01","150526_iDM2015","full05","OxicEvo04tpiAEvo02EPEcoli13CGlc","11",t,"","ALEsKOs01_150526_iDM2015_full05_OxicEvo04tpiAEvo02EPEcoli13CGlc_11"
+148,"ALEsKOs01","150526_iDM2015","full05","OxicEvo04tpiAEvo03EPEcoli13CGlc","11",t,"","ALEsKOs01_150526_iDM2015_full05_OxicEvo04tpiAEvo03EPEcoli13CGlc_11"
+149,"ALEsKOs01","150526_iDM2015","full05","OxicEvo04tpiAEvo04EPEcoli13CGlc","11",t,"","ALEsKOs01_150526_iDM2015_full05_OxicEvo04tpiAEvo04EPEcoli13CGlc_11"
