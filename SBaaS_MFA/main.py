@@ -17,16 +17,16 @@ engine = pg_orm.get_engine();
 
 # your app...
 # SBaaS paths:
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_base')
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_LIMS')
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_models')
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_MFA')
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_isotopomer')
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_physiology')
-sys.path.append(pg_settings.datadir_settings['drive']+'/genomeScale_MFA')
-sys.path.append(pg_settings.datadir_settings['drive']+'/genomeScale_MFA_INCA')
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_visualization')
-sys.path.append(pg_settings.datadir_settings['drive']+'/SBaaS_statistics')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_base')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_LIMS')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_models')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_MFA')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_isotopomer')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_physiology')
+sys.path.append(pg_settings.datadir_settings['github']+'/genomeScale_MFA')
+sys.path.append(pg_settings.datadir_settings['github']+'/genomeScale_MFA_INCA')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_visualization')
+sys.path.append(pg_settings.datadir_settings['github']+'/SBaaS_statistics')
 # SBaaS dependencies paths:
 sys.path.append(pg_settings.datadir_settings['github']+'/io_utilities')
 sys.path.append(pg_settings.datadir_settings['github']+'/python_statistics')
