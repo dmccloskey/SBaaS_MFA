@@ -324,22 +324,29 @@ class stage02_isotopomer_measuredData_query(sbaas_template_query):
                     met_atompositions = met_atompositions.replace('}','')
                     met_atompositions = met_atompositions.split(',')
                     met_atompositions = [int(x) for x in met_atompositions];
+                d['intensity_normalized_average'] = intensity_normalized_average
+                d['intensity_normalized_cv'] = intensity_normalized_cv
+                d['intensity_normalized_stdev'] = intensity_normalized_stdev
+                d['met_elements'] = met_elements
+                d['met_atompositions'] = met_atompositions
                 try:
-                    data_add = data_stage02_isotopomer_measuredFragments(d['experiment_id'],
-                                d['sample_name_abbreviation'],
-                                d['time_point'],
-                                d['met_id'],
-                                d['fragment_id'],
-                                d['fragment_formula'],
-                                intensity_normalized_average,
-                                intensity_normalized_cv,
-                                intensity_normalized_stdev,
-                                d['intensity_normalized_units'],
-                                d['scan_type'],
-                                met_elements,
-                                met_atompositions,
-                                d['used_'],
-                                d['comment_']);
+                    data_add = data_stage02_isotopomer_measuredFragments(d
+                                #d['experiment_id'],
+                                #d['sample_name_abbreviation'],
+                                #d['time_point'],
+                                #d['met_id'],
+                                #d['fragment_id'],
+                                #d['fragment_formula'],
+                                #intensity_normalized_average,
+                                #intensity_normalized_cv,
+                                #intensity_normalized_stdev,
+                                #d['intensity_normalized_units'],
+                                #d['scan_type'],
+                                #met_elements,
+                                #met_atompositions,
+                                #d['used_'],
+                                #d['comment_']
+                                );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -349,18 +356,20 @@ class stage02_isotopomer_measuredData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_measuredFluxes(d['experiment_id'],
-                            d['model_id'],
-                            d['sample_name_abbreviation'],
-                            #d['time_point'],
-                            d['rxn_id'],
-                            d['flux_average'],
-                            d['flux_stdev'],
-                            d['flux_lb'],
-                            d['flux_ub'],
-                            d['flux_units'],
-                            d['used_'],
-                            d['comment_']);
+                    data_add = data_stage02_isotopomer_measuredFluxes(d
+                            #d['experiment_id'],
+                            #d['model_id'],
+                            #d['sample_name_abbreviation'],
+                            ##d['time_point'],
+                            #d['rxn_id'],
+                            #d['flux_average'],
+                            #d['flux_stdev'],
+                            #d['flux_lb'],
+                            #d['flux_ub'],
+                            #d['flux_units'],
+                            #d['used_'],
+                            #d['comment_']
+                            );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -370,19 +379,21 @@ class stage02_isotopomer_measuredData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_measuredPools(d['experiment_id'],
-                            d['model_id'],
-                            d['sample_name_abbreviation'],
-                            d['time_point'],
-                            d['met_id'],
-                            d['pool_size'],
-                            d['concentration_average'],
-                            d['concentration_var'],
-                            d['concentration_lb'],
-                            d['concentration_ub'],
-                            d['concentration_units'],
-                            d['used_'],
-                            d['comment_']);
+                    data_add = data_stage02_isotopomer_measuredPools(d
+                            #d['experiment_id'],
+                            #d['model_id'],
+                            #d['sample_name_abbreviation'],
+                            #d['time_point'],
+                            #d['met_id'],
+                            #d['pool_size'],
+                            #d['concentration_average'],
+                            #d['concentration_var'],
+                            #d['concentration_lb'],
+                            #d['concentration_ub'],
+                            #d['concentration_units'],
+                            #d['used_'],
+                            #d['comment_']
+                            );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);

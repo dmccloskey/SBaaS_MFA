@@ -222,26 +222,28 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedFluxes(d['simulation_id'],
-                    d['simulation_dateAndTime'],
-                    #d['experiment_id'],
-                    #d['model_id'],
-                    #d['mapping_id'],
-                    #d['sample_name_abbreviation'],
-                    #d['time_point'],
-                    d['rxn_id'],
-                    d['flux'],
-                    d['flux_stdev'],
-                    d['flux_lb'],
-                    d['flux_ub'],
-                    d['flux_units'],
-                    d['fit_alf'],
-                    d['fit_chi2s'],
-                    d['fit_cor'],
-                    d['fit_cov'],
-                    d['free'],
-                    d['used_'],
-                    d['comment_']);
+                    data_add = data_stage02_isotopomer_fittedFluxes(d
+                    #    d['simulation_id'],
+                    #d['simulation_dateAndTime'],
+                    ##d['experiment_id'],
+                    ##d['model_id'],
+                    ##d['mapping_id'],
+                    ##d['sample_name_abbreviation'],
+                    ##d['time_point'],
+                    #d['rxn_id'],
+                    #d['flux'],
+                    #d['flux_stdev'],
+                    #d['flux_lb'],
+                    #d['flux_ub'],
+                    #d['flux_units'],
+                    #d['fit_alf'],
+                    #d['fit_chi2s'],
+                    #d['fit_cor'],
+                    #d['fit_cov'],
+                    #d['free'],
+                    #d['used_'],
+                    #d['comment_']
+                    );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -251,25 +253,27 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedFragments(d['simulation_id'],
-                            d['simulation_dateAndTime'],
-                            d['experiment_id'],
-                            #d['model_id'],
-                            #d['mapping_id'],
-                            d['sample_name_abbreviation'],
-                            d['time_point'],
-                            d['fragment_id'],
-                            #d['fragment_formula'],
-                            d['fragment_mass'],
-                            d['fit_val'],
-                            d['fit_stdev'],
-                            d['fit_units'],
-                            d['fit_alf'],
-                            d['fit_cor'],
-                            d['fit_cov'],
-                            d['free'],
-                            d['used_'],
-                            d['comment_']
+                    data_add = data_stage02_isotopomer_fittedFragments(
+                        d
+                        #d['simulation_id'],
+                        #    d['simulation_dateAndTime'],
+                        #    d['experiment_id'],
+                        #    #d['model_id'],
+                        #    #d['mapping_id'],
+                        #    d['sample_name_abbreviation'],
+                        #    d['time_point'],
+                        #    d['fragment_id'],
+                        #    #d['fragment_formula'],
+                        #    d['fragment_mass'],
+                        #    d['fit_val'],
+                        #    d['fit_stdev'],
+                        #    d['fit_units'],
+                        #    d['fit_alf'],
+                        #    d['fit_cor'],
+                        #    d['fit_cov'],
+                        #    d['free'],
+                        #    d['used_'],
+                        #    d['comment_']
                             );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
@@ -280,20 +284,23 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedData(d['simulation_id'],
-                    d['simulation_dateAndTime'], 
-                    d['Original Filename'],
-                    #d['experiment_id'], 
-                    #d['model_id'],
-                    #d['mapping_id'],
-                    #d['sample_name_abbreviation'],
-                    #d['time_point'],
-                    d['fitted_echi2'],
-                    d['fitted_alf'],
-                    d['fitted_chi2'],
-                    d['fitted_dof'],
-                    d['used_'],
-                    d['comment_']);
+                    data_add = data_stage02_isotopomer_fittedData(
+                        d
+                    #    d['simulation_id'],
+                    #d['simulation_dateAndTime'], 
+                    #d['Original Filename'],
+                    ##d['experiment_id'], 
+                    ##d['model_id'],
+                    ##d['mapping_id'],
+                    ##d['sample_name_abbreviation'],
+                    ##d['time_point'],
+                    #d['fitted_echi2'],
+                    #d['fitted_alf'],
+                    #d['fitted_chi2'],
+                    #d['fitted_dof'],
+                    #d['used_'],
+                    #d['comment_']
+                    );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -303,17 +310,20 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedMeasuredFluxes(d['simulation_id'],
-                    d['simulation_dateAndTime'],
-                    d['experiment_id'],
-                    #d['model_id'],
-                    #d['mapping_id'],
-                    d['sample_name_abbreviation'],
-                    #d['time_point'],
-                    d['rxn_id'],
-                    d['fitted_sres'],
-                    d['used_'],
-                    d['comment_']);
+                    data_add = data_stage02_isotopomer_fittedMeasuredFluxes(
+                        d
+                    #    d['simulation_id'],
+                    #d['simulation_dateAndTime'],
+                    #d['experiment_id'],
+                    ##d['model_id'],
+                    ##d['mapping_id'],
+                    #d['sample_name_abbreviation'],
+                    ##d['time_point'],
+                    #d['rxn_id'],
+                    #d['fitted_sres'],
+                    #d['used_'],
+                    #d['comment_']
+                    );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -323,19 +333,22 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedMeasuredFragments(d['simulation_id'],
-                    d['simulation_dateAndTime'],
-                    d['experiment_id'],
-                    #d['model_id'],
-                    #d['mapping_id'],
-                    d['sample_name_abbreviation'],
-                    #d['time_point'],
-                    #d['met_id'],
-                    d['fragment_id'],
-                    #d['fragment_formula'],
-                    d['fitted_sres'],
-                    d['used_'],
-                    d['comment_']);
+                    data_add = data_stage02_isotopomer_fittedMeasuredFragments(
+                        d
+                    #    d['simulation_id'],
+                    #d['simulation_dateAndTime'],
+                    #d['experiment_id'],
+                    ##d['model_id'],
+                    ##d['mapping_id'],
+                    #d['sample_name_abbreviation'],
+                    ##d['time_point'],
+                    ##d['met_id'],
+                    #d['fragment_id'],
+                    ##d['fragment_formula'],
+                    #d['fitted_sres'],
+                    #d['used_'],
+                    #d['comment_']
+                    );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -345,23 +358,26 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedMeasuredFluxResiduals(d['simulation_id'],
-                    d['simulation_dateAndTime'],
-                    d['experiment_id'],
-                    #d['model_id'],
-                    #d['mapping_id'],
-                    d['sample_name_abbreviation'],
-                    d['time_point'],
-                    d['rxn_id'],
-                    d['res_data'],
-                    d['res_esens'],
-                    d['res_fit'],
-                    d['res_msens'],
-                    d['res_peak'],
-                    d['res_stdev'],
-                    d['res_val'],
-                    d['used_'],
-                    d['comment_']);
+                    data_add = data_stage02_isotopomer_fittedMeasuredFluxResiduals(
+                        d
+                    #    d['simulation_id'],
+                    #d['simulation_dateAndTime'],
+                    #d['experiment_id'],
+                    ##d['model_id'],
+                    ##d['mapping_id'],
+                    #d['sample_name_abbreviation'],
+                    #d['time_point'],
+                    #d['rxn_id'],
+                    #d['res_data'],
+                    #d['res_esens'],
+                    #d['res_fit'],
+                    #d['res_msens'],
+                    #d['res_peak'],
+                    #d['res_stdev'],
+                    #d['res_val'],
+                    #d['used_'],
+                    #d['comment_']
+                    );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -371,25 +387,28 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedMeasuredFragmentResiduals(d['simulation_id'],
-                    d['simulation_dateAndTime'],
-                    d['experiment_id'],
-                    #d['model_id'],
-                    #d['mapping_id'],
-                    d['sample_name_abbreviation'],
-                    d['time_point'],
-                    d['fragment_id'],
-                    #d['fragment_formula'],
-                    d['fragment_mass'],
-                    d['res_data'],
-                    d['res_esens'],
-                    d['res_fit'],
-                    d['res_msens'],
-                    d['res_peak'],
-                    d['res_stdev'],
-                    d['res_val'],
-                    d['used_'],
-                    d['comment_']);
+                    data_add = data_stage02_isotopomer_fittedMeasuredFragmentResiduals(
+                        d
+                    #    d['simulation_id'],
+                    #d['simulation_dateAndTime'],
+                    #d['experiment_id'],
+                    ##d['model_id'],
+                    ##d['mapping_id'],
+                    #d['sample_name_abbreviation'],
+                    #d['time_point'],
+                    #d['fragment_id'],
+                    ##d['fragment_formula'],
+                    #d['fragment_mass'],
+                    #d['res_data'],
+                    #d['res_esens'],
+                    #d['res_fit'],
+                    #d['res_msens'],
+                    #d['res_peak'],
+                    #d['res_stdev'],
+                    #d['res_val'],
+                    #d['used_'],
+                    #d['comment_']
+                    );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);

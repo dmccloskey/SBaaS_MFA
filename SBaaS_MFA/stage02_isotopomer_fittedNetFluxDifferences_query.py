@@ -54,20 +54,23 @@ class stage02_isotopomer_fittedNetFluxDifferences_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedNetFluxDifferences(d['analysis_id'],
-                            d['simulation_id_1'],
-                            d['simulation_dateAndTime_1'],
-                            d['simulation_id_2'],
-                            d['simulation_dateAndTime_2'],
-                            d['rxn_id'],
-                            d['flux_difference'],
-                            d['flux_distance'],
-                            d['significant'],
-                            d['significant_criteria'],
-                            d['flux_units'],
-                            d['fold_change_geo'],
-                            d['used_'],
-                            d['comment_']);
+                    data_add = data_stage02_isotopomer_fittedNetFluxDifferences(
+                        d
+                            #d['analysis_id'],
+                            #d['simulation_id_1'],
+                            #d['simulation_dateAndTime_1'],
+                            #d['simulation_id_2'],
+                            #d['simulation_dateAndTime_2'],
+                            #d['rxn_id'],
+                            #d['flux_difference'],
+                            #d['flux_distance'],
+                            #d['significant'],
+                            #d['significant_criteria'],
+                            #d['flux_units'],
+                            #d['fold_change_geo'],
+                            #d['used_'],
+                            #d['comment_']
+                            );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);

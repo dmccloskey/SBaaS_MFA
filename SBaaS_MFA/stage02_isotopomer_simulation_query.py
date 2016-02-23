@@ -218,14 +218,16 @@ class stage02_isotopomer_simulation_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_simulation(d['simulation_id'],
-                            d['experiment_id'],
-                            d['model_id'],
-                            d['mapping_id'],
-                            d['sample_name_abbreviation'],
-                            d['time_point'],
-                            d['used_'],
-                            d['comment_']);
+                    data_add = data_stage02_isotopomer_simulation(d
+                            #d['simulation_id'],
+                            #d['experiment_id'],
+                            #d['model_id'],
+                            #d['mapping_id'],
+                            #d['sample_name_abbreviation'],
+                            #d['time_point'],
+                            #d['used_'],
+                            #d['comment_']
+                            );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);

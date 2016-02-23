@@ -94,19 +94,24 @@ class stage02_isotopomer_tracers_query(sbaas_template_query):
                     isotopomer_formula = isotopomer_formula.replace('{','')
                     isotopomer_formula = isotopomer_formula.replace('}','')
                     isotopomer_formula = isotopomer_formula.split(',')
+                d['isotopomer_formula'] = isotopomer_formula
+                d['met_elements'] = met_elements
+                d['met_atompositions'] = met_atompositions
                 try:
-                    data_add = data_stage02_isotopomer_tracers(d['experiment_id'],
-                            d['sample_name_abbreviation'],
-                            d['met_id'],
-                            d['met_name'],
-                            isotopomer_formula,
-                            met_elements,
-                            met_atompositions,
-                            d['ratio'],
-                            d['supplier'],
-                            d['supplier_reference'],
-                            d['purity'],
-                            d['comment_']);
+                    data_add = data_stage02_isotopomer_tracers(d
+                            #d['experiment_id'],
+                            #d['sample_name_abbreviation'],
+                            #d['met_id'],
+                            #d['met_name'],
+                            #isotopomer_formula,
+                            #met_elements,
+                            #met_atompositions,
+                            #d['ratio'],
+                            #d['supplier'],
+                            #d['supplier_reference'],
+                            #d['purity'],
+                            #d['comment_']
+                            );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);

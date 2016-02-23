@@ -360,21 +360,23 @@ class stage02_isotopomer_fittedExchangeFluxes_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedExchangeFluxes(d['simulation_id'],
-                        d['simulation_dateAndTime'],
-                        d['rxn_id'],
-                        d['flux_exchange'],
-                        d['flux_exchange_stdev'],
-                        d['flux_exchange_lb'],
-                        d['flux_exchange_ub'],
-                        d['flux_exchange_units'],
-                        d['flux_exchange_normalized'],
-                        d['flux_exchange_normalized_stdev'],
-                        d['flux_exchange_normalized_lb'],
-                        d['flux_exchange_normalized_ub'],
-                        d['flux_exchange_normalized_units'],
-                        d['used_'],
-                        d['comment_'],);
+                    data_add = data_stage02_isotopomer_fittedExchangeFluxes(d
+                        #d['simulation_id'],
+                        #d['simulation_dateAndTime'],
+                        #d['rxn_id'],
+                        #d['flux_exchange'],
+                        #d['flux_exchange_stdev'],
+                        #d['flux_exchange_lb'],
+                        #d['flux_exchange_ub'],
+                        #d['flux_exchange_units'],
+                        #d['flux_exchange_normalized'],
+                        #d['flux_exchange_normalized_stdev'],
+                        #d['flux_exchange_normalized_lb'],
+                        #d['flux_exchange_normalized_ub'],
+                        #d['flux_exchange_normalized_units'],
+                        #d['used_'],
+                        #d['comment_'],
+                        );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);

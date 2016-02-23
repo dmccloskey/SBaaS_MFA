@@ -419,16 +419,18 @@ class stage02_isotopomer_fittedNetFluxes_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_fittedNetFluxes(d['simulation_id'],
-                        d['simulation_dateAndTime'],
-                        d['rxn_id'],
-                        d['flux'],
-                        d['flux_stdev'],
-                        d['flux_lb'],
-                        d['flux_ub'],
-                        d['flux_units'],
-                        d['used_'],
-                        d['comment_'],);
+                    data_add = data_stage02_isotopomer_fittedNetFluxes(d
+                        #d['simulation_id'],
+                        #d['simulation_dateAndTime'],
+                        #d['rxn_id'],
+                        #d['flux'],
+                        #d['flux_stdev'],
+                        #d['flux_lb'],
+                        #d['flux_ub'],
+                        #d['flux_units'],
+                        #d['used_'],
+                        #d['comment_'],
+                        );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
