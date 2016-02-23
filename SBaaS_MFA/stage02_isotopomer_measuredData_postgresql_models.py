@@ -182,7 +182,7 @@ class data_stage02_isotopomer_measuredFragments(Base):
     used_ = Column(Boolean);
     comment_ = Column(Text);
     __table_args__ = (
-            UniqueConstraint('experiment_id','model_id','sample_name_abbreviation','time_poin','fragment_id','intensity_normalized_units','scan_type'),
+            UniqueConstraint('experiment_id','sample_name_abbreviation','time_point','fragment_id','intensity_normalized_units','scan_type'),
             )
     
     def __init__(self, 
