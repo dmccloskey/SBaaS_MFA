@@ -18,8 +18,24 @@ class data_stage02_isotopomer_tracers(Base):
     __table_args__ = (
             UniqueConstraint('experiment_id','sample_name_abbreviation','met_id','met_name'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.supplier_reference=data_dict_I['supplier_reference'];
+        self.supplier=data_dict_I['supplier'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.comment_=data_dict_I['comment_'];
+        self.ratio=data_dict_I['ratio'];
+        self.met_atompositions=data_dict_I['met_atompositions'];
+        self.experiment_id=data_dict_I['experiment_id'];
+        self.met_elements=data_dict_I['met_elements'];
+        self.isotopomer_formula=data_dict_I['isotopomer_formula'];
+        self.met_name=data_dict_I['met_name'];
+        self.met_id=data_dict_I['met_id'];
+        self.purity=data_dict_I['purity'];
 
-    def __init__(self,experiment_id_I,
+    def __set__row__(self,experiment_id_I,
             sample_name_abbreviation_I,
             met_id_I,
             met_name_I,

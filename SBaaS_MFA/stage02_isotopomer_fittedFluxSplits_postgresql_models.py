@@ -23,8 +23,23 @@ class data_stage02_isotopomer_fittedFluxSplits(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','split_id','split_rxn_id','simulation_dateAndTime','split_units'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.split_id=data_dict_I['split_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.comment_=data_dict_I['comment_'];
+        self.used_=data_dict_I['used_'];
+        self.split_units=data_dict_I['split_units'];
+        self.split_ub=data_dict_I['split_ub'];
+        self.split_lb=data_dict_I['split_lb'];
+        self.split_stdev=data_dict_I['split_stdev'];
+        self.split=data_dict_I['split'];
+        self.split_rxn_id=data_dict_I['split_rxn_id'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         #experiment_id_I,
         #model_id_I,

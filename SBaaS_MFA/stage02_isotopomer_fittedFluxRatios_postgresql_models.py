@@ -23,8 +23,23 @@ class data_stage02_isotopomer_fittedFluxRatios(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','ratio_id','simulation_dateAndTime','ratio_units'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.ratio_id=data_dict_I['ratio_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.comment_=data_dict_I['comment_'];
+        self.used_=data_dict_I['used_'];
+        self.ratio_units=data_dict_I['ratio_units'];
+        self.ratio_ub=data_dict_I['ratio_ub'];
+        self.ratio_lb=data_dict_I['ratio_lb'];
+        self.ratio_stdev=data_dict_I['ratio_stdev'];
+        self.ratio=data_dict_I['ratio'];
+        self.ratio_rxn_ids=data_dict_I['ratio_rxn_ids'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         #experiment_id_I,
         #model_id_I,

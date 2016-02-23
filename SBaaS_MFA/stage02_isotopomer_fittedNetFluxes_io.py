@@ -3,6 +3,7 @@ import json
 # SBaaS
 from .stage02_isotopomer_fittedNetFluxes_query import stage02_isotopomer_fittedNetFluxes_query
 from .stage02_isotopomer_analysis_query import stage02_isotopomer_analysis_query
+from SBaaS_base.sbaas_template_io import sbaas_template_io
 # Resources
 from io_utilities.base_importData import base_importData
 from io_utilities.base_exportData import base_exportData
@@ -12,7 +13,8 @@ import numpy
 
 class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_query,
                                             stage02_isotopomer_analysis_query,
-                                            models_escherMaps_query):
+                                            models_escherMaps_query,
+                                            sbaas_template_io):
     def plot_fluxPrecision(self,simulation_ids_I = [], rxn_ids_I = [], plot_by_rxn_id_I=True, individual_plots_I=True, exclude_I = {}, use_lbubAsErrorBars_I=True):
         '''Plot the flux precision for a given set of simulations and a given set of reactions
         Default: plot the flux precision for each simulation on a single plot for a single reaction'''

@@ -2,11 +2,13 @@
 import json
 # SBaaS
 from .stage02_isotopomer_heatmap_query import stage02_isotopomer_heatmap_query
+from SBaaS_base.sbaas_template_io import sbaas_template_io
 # Resources
 from io_utilities.base_importData import base_importData
 from io_utilities.base_exportData import base_exportData
 
-class stage02_isotopomer_heatmap_io(stage02_isotopomer_heatmap_query):
+class stage02_isotopomer_heatmap_io(stage02_isotopomer_heatmap_query,
+                                            sbaas_template_io):
     def export_dataStage02IsotopomerHeatmap_js(self,analysis_id_I,data_dir_I='tmp'):
         '''Export data as a heatmap'''
 

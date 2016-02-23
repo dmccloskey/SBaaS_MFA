@@ -3,13 +3,15 @@ import json
 # SBaaS
 from .stage02_isotopomer_fittedData_query import stage02_isotopomer_fittedData_query
 from .stage02_isotopomer_simulation_query import stage02_isotopomer_simulation_query
+from SBaaS_base.sbaas_template_io import sbaas_template_io
 # Resources
 from io_utilities.base_importData import base_importData
 from io_utilities.base_exportData import base_exportData
 from genomeScale_MFA_INCA.INCA_i import inca_i
 
 class stage02_isotopomer_fittedData_io(stage02_isotopomer_fittedData_query,
-                                       stage02_isotopomer_simulation_query):
+                                       stage02_isotopomer_simulation_query,
+                                       sbaas_template_io):
     def import_isotopomerSimulationResults_INCA(self, simulation_id, filename, model_rxn_conversion_I=None):
         '''import results from a fluxomics simulation using INCA1.3
         INPUT:

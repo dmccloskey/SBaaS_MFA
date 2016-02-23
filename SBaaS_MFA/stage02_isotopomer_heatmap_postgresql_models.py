@@ -17,8 +17,27 @@ class data_stage02_isotopomer_dendrogram(Base):
 
     __table_args__ = (UniqueConstraint('analysis_id','ivl','pdist_metric','linkage_method','value_units'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.row_pdist_metric=data_dict_I['row_pdist_metric'];
+        self.row_linkage_method=data_dict_I['row_linkage_method'];
+        self.value_units=data_dict_I['value_units'];
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.analysis_id=data_dict_I['analysis_id'];
+        self.col_index=data_dict_I['col_index'];
+        self.row_index=data_dict_I['row_index'];
+        self.value=data_dict_I['value'];
+        self.col_leaves=data_dict_I['col_leaves'];
+        self.row_leaves=data_dict_I['row_leaves'];
+        self.col_label=data_dict_I['col_label'];
+        self.row_label=data_dict_I['row_label'];
+        self.col_pdist_metric=data_dict_I['col_pdist_metric'];
+        self.col_linkage_method=data_dict_I['col_linkage_method'];
 
-    def __init__(self,analysis_id_I,
+    def __set__row__(self,analysis_id_I,
                 leaves_I,
                 icoord_I,
                 dcoord_I,
@@ -80,8 +99,23 @@ class data_stage02_isotopomer_heatmap(Base):
     __table_args__ = (#UniqueConstraint('experiment_id','sample_name_short','time_point','component_name'),
                       UniqueConstraint('analysis_id','col_label','row_label','col_pdist_metric','row_pdist_metric','col_linkage_method','row_linkage_method','value_units'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.used_=data_dict_I['used_'];
+        self.value_units=data_dict_I['value_units'];
+        self.linkage_method=data_dict_I['linkage_method'];
+        self.pdist_metric=data_dict_I['pdist_metric'];
+        self.colors=data_dict_I['colors'];
+        self.ivl=data_dict_I['ivl'];
+        self.dcoord=data_dict_I['dcoord'];
+        self.icoord=data_dict_I['icoord'];
+        self.leaves=data_dict_I['leaves'];
+        self.analysis_id=data_dict_I['analysis_id'];
+        self.comment_=data_dict_I['comment_'];
 
-    def __init__(self,analysis_id_I,
+    def __set__row__(self,analysis_id_I,
                 col_index_I,
                 row_index_I,
                 value_I,

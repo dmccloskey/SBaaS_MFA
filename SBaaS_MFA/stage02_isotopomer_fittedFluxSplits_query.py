@@ -1,12 +1,23 @@
-#LIMS
-from SBaaS_LIMS.lims_experiment_postgresql_models import *
-from SBaaS_LIMS.lims_sample_postgresql_models import *
 #SBaaS
 from .stage02_isotopomer_fittedFluxSplits_postgresql_models import *
 
 from SBaaS_base.sbaas_base import sbaas_base
+from SBaaS_base.sbaas_base_query_update import sbaas_base_query_update
+from SBaaS_base.sbaas_base_query_drop import sbaas_base_query_drop
+from SBaaS_base.sbaas_base_query_initialize import sbaas_base_query_initialize
+from SBaaS_base.sbaas_base_query_insert import sbaas_base_query_insert
+from SBaaS_base.sbaas_base_query_select import sbaas_base_query_select
+from SBaaS_base.sbaas_base_query_delete import sbaas_base_query_delete
 
-class stage02_isotopomer_fittedFluxSplits_query(sbaas_base):
+from SBaaS_base.sbaas_template_query import sbaas_template_query
+
+class stage02_isotopomer_fittedFluxSplits_query(sbaas_template_query):
+    def initialize_supportedTables(self):
+        '''Set the supported tables dict for ...
+        '''
+        tables_supported = {'data_stage02_isotopomer_fittedFluxSplits':data_stage02_isotopomer_fittedFluxSplits,
+                        };
+        self.set_supportedTables(tables_supported); 
     ## Query from data_stage02_isotopomer_fittedFluxSplits
     # query simulation_dateAndTimes from data_stage02_isotopomer_fittedFluxSplits   
     def get_simulationDateAndTimes_simulationID_dataStage02IsotopomerfittedFluxSplits(self,simulation_id_I):

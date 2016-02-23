@@ -1,12 +1,31 @@
-#LIMS
-from SBaaS_LIMS.lims_experiment_postgresql_models import *
-from SBaaS_LIMS.lims_sample_postgresql_models import *
 #SBaaS
 from .stage02_isotopomer_fittedData_postgresql_models import *
 
 from SBaaS_base.sbaas_base import sbaas_base
+from SBaaS_base.sbaas_base_query_update import sbaas_base_query_update
+from SBaaS_base.sbaas_base_query_drop import sbaas_base_query_drop
+from SBaaS_base.sbaas_base_query_initialize import sbaas_base_query_initialize
+from SBaaS_base.sbaas_base_query_insert import sbaas_base_query_insert
+from SBaaS_base.sbaas_base_query_select import sbaas_base_query_select
+from SBaaS_base.sbaas_base_query_delete import sbaas_base_query_delete
 
-class stage02_isotopomer_fittedData_query(sbaas_base):
+from SBaaS_base.sbaas_template_query import sbaas_template_query
+
+class stage02_isotopomer_fittedData_query(sbaas_template_query):
+    def initialize_supportedTables(self):
+        '''Set the supported tables dict for ...
+        '''
+        tables_supported = {'data_stage02_isotopomer_fittedFluxes':data_stage02_isotopomer_fittedFluxes,
+            'data_stage02_isotopomer_fittedFragments':data_stage02_isotopomer_fittedFragments,
+            'data_stage02_isotopomer_fittedData':data_stage02_isotopomer_fittedData,
+            'data_stage02_isotopomer_fittedMeasuredFluxes':data_stage02_isotopomer_fittedMeasuredFluxes,
+            'data_stage02_isotopomer_fittedMeasuredFragments':data_stage02_isotopomer_fittedMeasuredFragments,
+            'data_stage02_isotopomer_fittedMeasuredFluxResiduals':data_stage02_isotopomer_fittedMeasuredFluxResiduals,
+            'data_stage02_isotopomer_fittedMeasuredFragmentResiduals':data_stage02_isotopomer_fittedMeasuredFragmentResiduals,
+            'data_stage02_isotopomer_fittedFluxStatistics':data_stage02_isotopomer_fittedFluxStatistics,
+            'data_stage02_isotopomer_simulationParameters':data_stage02_isotopomer_simulationParameters,
+                        };
+        self.set_supportedTables(tables_supported);
     ## Query from data_stage02_isotopomer_fittedFluxes
     # query simulation_dateAndTimes from data_stage02_isotopomer_fittedFluxes   
     def get_simulationDateAndTimes_simulationID_dataStage02IsotopomerfittedFluxes(self,simulation_id_I):

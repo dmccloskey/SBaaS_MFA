@@ -28,7 +28,26 @@ class data_stage02_isotopomer_fittedFluxes(Base):
             UniqueConstraint('simulation_id','rxn_id','simulation_dateAndTime'),
             )
 
-    def __init__(self,simulation_id_I,
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.fit_cov=data_dict_I['fit_cov'];
+        self.comment_=data_dict_I['comment_'];
+        self.used_=data_dict_I['used_'];
+        self.free=data_dict_I['free'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.rxn_id=data_dict_I['rxn_id'];
+        self.flux=data_dict_I['flux'];
+        self.flux_stdev=data_dict_I['flux_stdev'];
+        self.flux_lb=data_dict_I['flux_lb'];
+        self.flux_ub=data_dict_I['flux_ub'];
+        self.flux_units=data_dict_I['flux_units'];
+        self.fit_alf=data_dict_I['fit_alf'];
+        self.fit_chi2s=data_dict_I['fit_chi2s'];
+        self.fit_cor=data_dict_I['fit_cor'];
+
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         #experiment_id_I,
         #model_id_I,
@@ -121,8 +140,27 @@ class data_stage02_isotopomer_fittedFragments(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','time_point','fragment_id','fragment_mass','simulation_dateAndTime'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.comment_=data_dict_I['comment_'];
+        self.used_=data_dict_I['used_'];
+        self.free=data_dict_I['free'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.fit_cov=data_dict_I['fit_cov'];
+        self.fit_cor=data_dict_I['fit_cor'];
+        self.fit_alf=data_dict_I['fit_alf'];
+        self.fit_units=data_dict_I['fit_units'];
+        self.fit_stdev=data_dict_I['fit_stdev'];
+        self.fit_val=data_dict_I['fit_val'];
+        self.fragment_mass=data_dict_I['fragment_mass'];
+        self.fragment_id=data_dict_I['fragment_id'];
+        self.time_point=data_dict_I['time_point'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.experiment_id=data_dict_I['experiment_id'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         experiment_id_I,
         #model_id_I,
@@ -207,8 +245,21 @@ class data_stage02_isotopomer_fittedData(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','simulation_dateAndTime'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.fitted_alf=data_dict_I['fitted_alf'];
+        self.fitted_chi2=data_dict_I['fitted_chi2'];
+        self.fitted_dof=data_dict_I['fitted_dof'];
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.id=data_dict_I['id'];
+        self.fitted_echi2=data_dict_I['fitted_echi2'];
+        self.original_filename=data_dict_I['original_filename'];
 
-    def __init__(self,
+    def __set__row__(self,
         simulation_id_I,
         simulation_dateAndTime_I,
         #experiment_id_I,
@@ -273,8 +324,20 @@ class data_stage02_isotopomer_fittedMeasuredFluxes(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','rxn_id','simulation_dateAndTime'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.experiment_id=data_dict_I['experiment_id'];
+        self.comment_=data_dict_I['comment_'];
+        self.used_=data_dict_I['used_'];
+        self.fitted_sres=data_dict_I['fitted_sres'];
+        self.rxn_id=data_dict_I['rxn_id'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.id=data_dict_I['id'];
 
-    def __init__(self,
+    def __set__row__(self,
         simulation_id_I,
         simulation_dateAndTime_I,
         experiment_id_I,
@@ -335,8 +398,19 @@ class data_stage02_isotopomer_fittedMeasuredFragments(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','fragment_id','simulation_dateAndTime'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.comment_=data_dict_I['comment_'];
+        self.used_=data_dict_I['used_'];
+        self.fitted_sres=data_dict_I['fitted_sres'];
+        self.fragment_id=data_dict_I['fragment_id'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.experiment_id=data_dict_I['experiment_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.simulation_id=data_dict_I['simulation_id'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
     simulation_dateAndTime_I,
     experiment_id_I,
     #model_id_I,
@@ -406,8 +480,26 @@ class data_stage02_isotopomer_fittedMeasuredFluxResiduals(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','rxn_id','time_point','simulation_dateAndTime'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.res_stdev=data_dict_I['res_stdev'];
+        self.res_peak=data_dict_I['res_peak'];
+        self.res_msens=data_dict_I['res_msens'];
+        self.res_fit=data_dict_I['res_fit'];
+        self.res_esens=data_dict_I['res_esens'];
+        self.used_=data_dict_I['used_'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.experiment_id=data_dict_I['experiment_id'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.time_point=data_dict_I['time_point'];
+        self.rxn_id=data_dict_I['rxn_id'];
+        self.res_data=data_dict_I['res_data'];
+        self.res_val=data_dict_I['res_val'];
+        self.comment_=data_dict_I['comment_'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         experiment_id_I,
         #model_id_I,
@@ -491,8 +583,27 @@ class data_stage02_isotopomer_fittedMeasuredFragmentResiduals(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','time_point','fragment_id','fragment_mass','simulation_dateAndTime'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.res_val=data_dict_I['res_val'];
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.experiment_id=data_dict_I['experiment_id'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.time_point=data_dict_I['time_point'];
+        self.fragment_id=data_dict_I['fragment_id'];
+        self.fragment_mass=data_dict_I['fragment_mass'];
+        self.res_data=data_dict_I['res_data'];
+        self.res_esens=data_dict_I['res_esens'];
+        self.res_fit=data_dict_I['res_fit'];
+        self.res_msens=data_dict_I['res_msens'];
+        self.res_peak=data_dict_I['res_peak'];
+        self.res_stdev=data_dict_I['res_stdev'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         experiment_id_I,
         #model_id_I,
@@ -575,8 +686,24 @@ class data_stage02_isotopomer_fittedFluxStatistics(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','simulation_dateAndTime','flux_units'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.total_precision=data_dict_I['total_precision'];
+        self.relative_nObservableFluxes=data_dict_I['relative_nObservableFluxes'];
+        self.average_observableFluxPrecision=data_dict_I['average_observableFluxPrecision'];
+        self.average_fluxPrecision=data_dict_I['average_fluxPrecision'];
+        self.flux_units=data_dict_I['flux_units'];
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.n_fluxes=data_dict_I['n_fluxes'];
+        self.n_observableFluxes=data_dict_I['n_observableFluxes'];
+        self.total_observablePrecision=data_dict_I['total_observablePrecision'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         n_fluxes_I,
         n_observableFluxes_I,
@@ -655,8 +782,39 @@ class data_stage02_isotopomer_simulationParameters(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','simulation_dateAndTime'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.sim_tunit=data_dict_I['sim_tunit'];
+        self.sim_ss=data_dict_I['sim_ss'];
+        self.sim_sens=data_dict_I['sim_sens'];
+        self.sim_na=data_dict_I['sim_na'];
+        self.sim_more=data_dict_I['sim_more'];
+        self.oed_tolx=data_dict_I['oed_tolx'];
+        self.oed_tolf=data_dict_I['oed_tolf'];
+        self.oed_reinit=data_dict_I['oed_reinit'];
+        self.oed_crit=data_dict_I['oed_crit'];
+        self.ms_correct=data_dict_I['ms_correct'];
+        self.int_tspan=data_dict_I['int_tspan'];
+        self.int_timeout=data_dict_I['int_timeout'];
+        self.int_senstol=data_dict_I['int_senstol'];
+        self.int_reltol=data_dict_I['int_reltol'];
+        self.int_maxstep=data_dict_I['int_maxstep'];
+        self.hpc_serve=data_dict_I['hpc_serve'];
+        self.hpc_on=data_dict_I['hpc_on'];
+        self.hpc_mcr=data_dict_I['hpc_mcr'];
+        self.fit_tau=data_dict_I['fit_tau'];
+        self.fit_starts=data_dict_I['fit_starts'];
+        self.fit_reltol=data_dict_I['fit_reltol'];
+        self.fit_reinit=data_dict_I['fit_reinit'];
+        self.fit_nudge=data_dict_I['fit_nudge'];
+        self.cont_steps=data_dict_I['cont_steps'];
+        self.cont_reltol=data_dict_I['cont_reltol'];
+        self.cont_alpha=data_dict_I['cont_alpha'];
+        self.simulation_id=data_dict_I['simulation_id'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         original_filename_I,
         cont_alpha_I,

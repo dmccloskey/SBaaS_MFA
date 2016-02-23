@@ -2,11 +2,13 @@
 import json
 # SBaaS
 from .stage02_isotopomer_fittedFluxSplits_query import stage02_isotopomer_fittedFluxSplits_query
+from SBaaS_base.sbaas_template_io import sbaas_template_io
 # Resources
 from io_utilities.base_importData import base_importData
 from io_utilities.base_exportData import base_exportData
 
-class stage02_isotopomer_fittedFluxSplits_io(stage02_isotopomer_fittedFluxSplits_query):
+class stage02_isotopomer_fittedFluxSplits_io(stage02_isotopomer_fittedFluxSplits_query,
+                                            sbaas_template_io):
     def plot_fluxSplits(self,simulation_ids_I = [], split_ids_I = [], plot_by_split_id_I=True, individual_plots_I=True, exclude_I = {}, use_lbubAsErrorBars_I=True):
         '''Plot the flux splits for a given set of simulations and a given set of reactions
         Default: plot the flux precision for each simulation on a single plot for a single reaction'''

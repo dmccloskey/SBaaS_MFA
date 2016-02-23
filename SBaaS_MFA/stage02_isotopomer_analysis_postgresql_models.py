@@ -10,8 +10,16 @@ class data_stage02_isotopomer_analysis(Base):
     __table_args__ = (
             UniqueConstraint('analysis_id','simulation_id'),
             )
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.analysis_id=data_dict_I['analysis_id'];
+        self.simulation_id=data_dict_I['simulation_id'];
 
-    def __init__(self,
+
+    def __set__row__(self,
             analysis_id_I,
             simulation_id_I,
             used__I,

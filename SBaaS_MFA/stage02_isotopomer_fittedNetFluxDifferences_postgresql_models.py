@@ -21,8 +21,26 @@ class data_stage02_isotopomer_fittedNetFluxDifferences(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('analysis_id','simulation_id_1','simulation_dateAndTime_1','simulation_id_2','simulation_dateAndTime_2','rxn_id','simulation_dateAndTime_1','flux_units','significant_criteria'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.simulation_dateAndTime_2=data_dict_I['simulation_dateAndTime_2'];
+        self.rxn_id=data_dict_I['rxn_id'];
+        self.flux_difference=data_dict_I['flux_difference'];
+        self.flux_distance=data_dict_I['flux_distance'];
+        self.significant=data_dict_I['significant'];
+        self.significant_criteria=data_dict_I['significant_criteria'];
+        self.flux_units=data_dict_I['flux_units'];
+        self.fold_change_geo=data_dict_I['fold_change_geo'];
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.simulation_id_2=data_dict_I['simulation_id_2'];
+        self.simulation_dateAndTime_1=data_dict_I['simulation_dateAndTime_1'];
+        self.simulation_id_1=data_dict_I['simulation_id_1'];
+        self.analysis_id=data_dict_I['analysis_id'];
 
-    def __init__(self,
+    def __set__row__(self,
         analysis_id_I,
         simulation_id_1_I,
         simulation_dateAndTime_1_I,

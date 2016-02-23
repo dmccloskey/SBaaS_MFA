@@ -27,8 +27,27 @@ class data_stage02_isotopomer_fittedExchangeFluxes(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','rxn_id','simulation_dateAndTime','flux_exchange_units'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.flux_exchange_lb=data_dict_I['flux_exchange_lb'];
+        self.comment_=data_dict_I['comment_'];
+        self.used_=data_dict_I['used_'];
+        self.flux_exchange_normalized_units=data_dict_I['flux_exchange_normalized_units'];
+        self.flux_exchange_normalized_ub=data_dict_I['flux_exchange_normalized_ub'];
+        self.flux_exchange_normalized_lb=data_dict_I['flux_exchange_normalized_lb'];
+        self.flux_exchange_normalized_stdev=data_dict_I['flux_exchange_normalized_stdev'];
+        self.flux_exchange_normalized=data_dict_I['flux_exchange_normalized'];
+        self.flux_exchange_units=data_dict_I['flux_exchange_units'];
+        self.flux_exchange_ub=data_dict_I['flux_exchange_ub'];
+        self.flux_exchange_stdev=data_dict_I['flux_exchange_stdev'];
+        self.flux_exchange=data_dict_I['flux_exchange'];
+        self.rxn_id=data_dict_I['rxn_id'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.simulation_id=data_dict_I['simulation_id'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
             simulation_dateAndTime_I,
             rxn_id_I,
             flux_exchange_I,
@@ -99,8 +118,24 @@ class data_stage02_isotopomer_fittedExchangeFluxStatistics(Base):
             #ForeignKeyConstraint(['simulation_id'], ['data_stage02_isotopomer_simulation.simulation_id']),
             UniqueConstraint('simulation_id','simulation_dateAndTime','flux_units'),
             )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.n_observableFluxes=data_dict_I['n_observableFluxes'];
+        self.n_fluxes=data_dict_I['n_fluxes'];
+        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
+        self.simulation_id=data_dict_I['simulation_id'];
+        self.average_fluxPrecision=data_dict_I['average_fluxPrecision'];
+        self.comment_=data_dict_I['comment_'];
+        self.flux_units=data_dict_I['flux_units'];
+        self.used_=data_dict_I['used_'];
+        self.average_observableFluxPrecision=data_dict_I['average_observableFluxPrecision'];
+        self.relative_nObservableFluxes=data_dict_I['relative_nObservableFluxes'];
+        self.total_observablePrecision=data_dict_I['total_observablePrecision'];
+        self.total_precision=data_dict_I['total_precision'];
 
-    def __init__(self,simulation_id_I,
+    def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
         n_fluxes_I,
         n_observableFluxes_I,

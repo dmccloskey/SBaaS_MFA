@@ -15,7 +15,26 @@ class data_stage02_isotopomer_measuredFluxes(Base):
     used_ = Column(Boolean);
     comment_ = Column(Text);
 
-    def __init__(self,experiment_id_I,
+    __table_args__ = (
+            UniqueConstraint('experiment_id','model_id','sample_name_abbreviation','rxn_id','flux_units'),
+            )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.experiment_id=data_dict_I['experiment_id'];
+        self.comment_=data_dict_I['comment_'];
+        self.flux_average=data_dict_I['flux_average'];
+        self.flux_units=data_dict_I['flux_units'];
+        self.used_=data_dict_I['used_'];
+        self.flux_stdev=data_dict_I['flux_stdev'];
+        self.flux_lb=data_dict_I['flux_lb'];
+        self.flux_ub=data_dict_I['flux_ub'];
+        self.rxn_id=data_dict_I['rxn_id'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.model_id=data_dict_I['model_id'];
+
+    def __set__row__(self,experiment_id_I,
             model_id_I,
             sample_name_abbreviation_I,
             #time_point_I,
@@ -75,8 +94,28 @@ class data_stage02_isotopomer_measuredPools(Base):
     concentration_units = Column(String(50))
     used_ = Column(Boolean)
     comment_ = Column(Text);
+    __table_args__ = (
+            UniqueConstraint('experiment_id','model_id','time_point','sample_name_abbreviation','met_id','concentration_units'),
+            )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.concentration_var=data_dict_I['concentration_var'];
+        self.concentration_units=data_dict_I['concentration_units'];
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.concentration_ub=data_dict_I['concentration_ub'];
+        self.concentration_lb=data_dict_I['concentration_lb'];
+        self.concentration_average=data_dict_I['concentration_average'];
+        self.pool_size=data_dict_I['pool_size'];
+        self.met_id=data_dict_I['met_id'];
+        self.time_point=data_dict_I['time_point'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.model_id=data_dict_I['model_id'];
+        self.experiment_id=data_dict_I['experiment_id'];
 
-    def __init__(self,experiment_id_I,
+    def __set__row__(self,experiment_id_I,
             model_id_I,
             sample_name_abbreviation_I,
             time_point_I,
@@ -108,7 +147,7 @@ class data_stage02_isotopomer_measuredPools(Base):
                 'experiment_id':self.experiment_id,
                     'model_id':self.model_id,
                     'sample_name_abbreviation':self.sample_name_abbreviation,
-                    'time_point':self.time_point,
+                    #'time_point':self.time_point,
                     'met_id':self.met_id,
                     'pool_size':self.pool_size,
                     'concentration_average':self.concentration_average,
@@ -137,13 +176,35 @@ class data_stage02_isotopomer_measuredFragments(Base):
     intensity_normalized_cv = Column(postgresql.ARRAY(Float))
     intensity_normalized_stdev = Column(postgresql.ARRAY(Float))
     intensity_normalized_units = Column(String(20))
-    scan_type = Column(String(50), primary_key=True);
+    scan_type = Column(String(50));
     met_elements = Column(postgresql.ARRAY(String(3))) # the elements that are tracked (e.g. C,C,C)
     met_atompositions = Column(postgresql.ARRAY(Integer)) #the atoms positions that are tracked (e.g. 1,2,3) 
     used_ = Column(Boolean);
     comment_ = Column(Text);
+    __table_args__ = (
+            UniqueConstraint('experiment_id','model_id','sample_name_abbreviation','time_poin','fragment_id','intensity_normalized_units','scan_type'),
+            )
+    
+    def __init__(self, 
+                row_dict_I,
+                ):
+        self.intensity_normalized_stdev=data_dict_I['intensity_normalized_stdev'];
+        self.intensity_normalized_units=data_dict_I['intensity_normalized_units'];
+        self.scan_type=data_dict_I['scan_type'];
+        self.met_atompositions=data_dict_I['met_atompositions'];
+        self.met_elements=data_dict_I['met_elements'];
+        self.used_=data_dict_I['used_'];
+        self.comment_=data_dict_I['comment_'];
+        self.experiment_id=data_dict_I['experiment_id'];
+        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.time_point=data_dict_I['time_point'];
+        self.met_id=data_dict_I['met_id'];
+        self.fragment_id=data_dict_I['fragment_id'];
+        self.fragment_formula=data_dict_I['fragment_formula'];
+        self.intensity_normalized_average=data_dict_I['intensity_normalized_average'];
+        self.intensity_normalized_cv=data_dict_I['intensity_normalized_cv'];
 
-    def __init__(self, experiment_id_I, sample_name_abbreviation_I, 
+    def __set__row__(self, experiment_id_I, sample_name_abbreviation_I, 
                  time_point_I, met_id_I,fragment_id_I,
                     fragment_formula_I,
                     #fragment_mass_I,
