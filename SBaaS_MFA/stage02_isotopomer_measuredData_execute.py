@@ -190,21 +190,21 @@ class stage02_isotopomer_measuredData_execute(stage02_isotopomer_measuredData_io
                                 'used_':True,
                                 'comment_':None}
                         data_O.append(data_tmp);
-                        #add data to the database
-                        row = [];
-                        row = data_stage02_isotopomer_measuredFluxes(
-                            experiment_id_I,
-                            model_id,
-                            sna,
-                            k,
-                            v['ave'],
-                            v['stdev'],
-                            v['lb'], 
-                            v['ub'],
-                            v['units'],
-                            True,
-                            None);
-                        self.session.add(row);
+                        ##add data to the database
+                        #row = [];
+                        #row = data_stage02_isotopomer_measuredFluxes(
+                        #    experiment_id_I,
+                        #    model_id,
+                        #    sna,
+                        #    k,
+                        #    v['ave'],
+                        #    v['stdev'],
+                        #    v['lb'], 
+                        #    v['ub'],
+                        #    v['units'],
+                        #    True,
+                        #    None);
+                        #self.session.add(row);
                 if ko_list:
                     for k in ko_list[model_id][sna]:
                         # record the data
@@ -220,22 +220,24 @@ class stage02_isotopomer_measuredData_execute(stage02_isotopomer_measuredData_io
                                 'used_':True,
                                 'comment_':None}
                         data_O.append(data_tmp);
-                        #add data to the database
-                        row = [];
-                        row = data_stage02_isotopomer_measuredFluxes(
-                            experiment_id_I,
-                            model_id,
-                            sna,
-                            k,
-                            0.0,
-                            0.0,
-                            0.0, 
-                            0.0,
-                            'mmol*gDCW-1*hr-1',
-                            True,
-                            None);
-                        self.session.add(row);
-        self.session.commit();
+                        ##add data to the database
+                        #row = [];
+                        #row = data_stage02_isotopomer_measuredFluxes(
+                        #    experiment_id_I,
+                        #    model_id,
+                        #    sna,
+                        #    k,
+                        #    0.0,
+                        #    0.0,
+                        #    0.0, 
+                        #    0.0,
+                        #    'mmol*gDCW-1*hr-1',
+                        #    True,
+                        #    None);
+                        #self.session.add(row);
+        # add data to the DB
+        self.add_data_stage02_isotopomer_measuredFluxes(data_O);
+        #self.session.commit();
     def execute_makeMeasuredFluxes(self,experiment_id_I, metID2RxnID_I = {}, sample_name_abbreviations_I = [], met_ids_I = [],snaIsotopomer2snaPhysiology_I={},
                                    correct_EX_glc_LPAREN_e_RPAREN_I = True):
         '''Collect and flux data from data_stage01_physiology_ratesAverages for fluxomics simulation
@@ -300,19 +302,21 @@ class stage02_isotopomer_measuredData_execute(stage02_isotopomer_measuredData_io
                         'used_':True,
                         'comment_':None}
                 data_O.append(data_tmp);
-                #add data to the database
-                row = [];
-                row = data_stage02_isotopomer_measuredFluxes(
-                    experiment_id_I,
-                    model_id,
-                    sna,
-                    rxn_id,
-                    rate_average,
-                    rate_stdev,
-                    rate_lb, 
-                    rate_ub,
-                    rate_units,
-                    True,
-                    None);
-                self.session.add(row);
-        self.session.commit();
+                ##add data to the database
+                #row = [];
+                #row = data_stage02_isotopomer_measuredFluxes(
+                #    experiment_id_I,
+                #    model_id,
+                #    sna,
+                #    rxn_id,
+                #    rate_average,
+                #    rate_stdev,
+                #    rate_lb, 
+                #    rate_ub,
+                #    rate_units,
+                #    True,
+                #    None);
+                #self.session.add(row);
+        #add data to the DB
+        self.add_data_stage02_isotopomer_measuredFluxes(data_O);
+        #self.session.commit();
