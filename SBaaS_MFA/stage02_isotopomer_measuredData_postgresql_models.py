@@ -22,17 +22,17 @@ class data_stage02_isotopomer_measuredFluxes(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.experiment_id=data_dict_I['experiment_id'];
-        self.comment_=data_dict_I['comment_'];
-        self.flux_average=data_dict_I['flux_average'];
-        self.flux_units=data_dict_I['flux_units'];
-        self.used_=data_dict_I['used_'];
-        self.flux_stdev=data_dict_I['flux_stdev'];
-        self.flux_lb=data_dict_I['flux_lb'];
-        self.flux_ub=data_dict_I['flux_ub'];
-        self.rxn_id=data_dict_I['rxn_id'];
-        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
-        self.model_id=data_dict_I['model_id'];
+        self.experiment_id=row_dict_I['experiment_id'];
+        self.comment_=row_dict_I['comment_'];
+        self.flux_average=row_dict_I['flux_average'];
+        self.flux_units=row_dict_I['flux_units'];
+        self.used_=row_dict_I['used_'];
+        self.flux_stdev=row_dict_I['flux_stdev'];
+        self.flux_lb=row_dict_I['flux_lb'];
+        self.flux_ub=row_dict_I['flux_ub'];
+        self.rxn_id=row_dict_I['rxn_id'];
+        self.sample_name_abbreviation=row_dict_I['sample_name_abbreviation'];
+        self.model_id=row_dict_I['model_id'];
 
     def __set__row__(self,experiment_id_I,
             model_id_I,
@@ -101,19 +101,19 @@ class data_stage02_isotopomer_measuredPools(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.concentration_var=data_dict_I['concentration_var'];
-        self.concentration_units=data_dict_I['concentration_units'];
-        self.used_=data_dict_I['used_'];
-        self.comment_=data_dict_I['comment_'];
-        self.concentration_ub=data_dict_I['concentration_ub'];
-        self.concentration_lb=data_dict_I['concentration_lb'];
-        self.concentration_average=data_dict_I['concentration_average'];
-        self.pool_size=data_dict_I['pool_size'];
-        self.met_id=data_dict_I['met_id'];
-        self.time_point=data_dict_I['time_point'];
-        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
-        self.model_id=data_dict_I['model_id'];
-        self.experiment_id=data_dict_I['experiment_id'];
+        self.concentration_var=row_dict_I['concentration_var'];
+        self.concentration_units=row_dict_I['concentration_units'];
+        self.used_=row_dict_I['used_'];
+        self.comment_=row_dict_I['comment_'];
+        self.concentration_ub=row_dict_I['concentration_ub'];
+        self.concentration_lb=row_dict_I['concentration_lb'];
+        self.concentration_average=row_dict_I['concentration_average'];
+        self.pool_size=row_dict_I['pool_size'];
+        self.met_id=row_dict_I['met_id'];
+        self.time_point=row_dict_I['time_point'];
+        self.sample_name_abbreviation=row_dict_I['sample_name_abbreviation'];
+        self.model_id=row_dict_I['model_id'];
+        self.experiment_id=row_dict_I['experiment_id'];
 
     def __set__row__(self,experiment_id_I,
             model_id_I,
@@ -188,21 +188,21 @@ class data_stage02_isotopomer_measuredFragments(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.intensity_normalized_stdev=data_dict_I['intensity_normalized_stdev'];
-        self.intensity_normalized_units=data_dict_I['intensity_normalized_units'];
-        self.scan_type=data_dict_I['scan_type'];
-        self.met_atompositions=data_dict_I['met_atompositions'];
-        self.met_elements=data_dict_I['met_elements'];
-        self.used_=data_dict_I['used_'];
-        self.comment_=data_dict_I['comment_'];
-        self.experiment_id=data_dict_I['experiment_id'];
-        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
-        self.time_point=data_dict_I['time_point'];
-        self.met_id=data_dict_I['met_id'];
-        self.fragment_id=data_dict_I['fragment_id'];
-        self.fragment_formula=data_dict_I['fragment_formula'];
-        self.intensity_normalized_average=data_dict_I['intensity_normalized_average'];
-        self.intensity_normalized_cv=data_dict_I['intensity_normalized_cv'];
+        self.intensity_normalized_stdev=row_dict_I['intensity_normalized_stdev'];
+        self.intensity_normalized_units=row_dict_I['intensity_normalized_units'];
+        self.scan_type=row_dict_I['scan_type'];
+        self.met_atompositions=row_dict_I['met_atompositions'];
+        self.met_elements=row_dict_I['met_elements'];
+        self.used_=row_dict_I['used_'];
+        self.comment_=row_dict_I['comment_'];
+        self.experiment_id=row_dict_I['experiment_id'];
+        self.sample_name_abbreviation=row_dict_I['sample_name_abbreviation'];
+        self.time_point=row_dict_I['time_point'];
+        self.met_id=row_dict_I['met_id'];
+        self.fragment_id=row_dict_I['fragment_id'];
+        self.fragment_formula=row_dict_I['fragment_formula'];
+        self.intensity_normalized_average=row_dict_I['intensity_normalized_average'];
+        self.intensity_normalized_cv=row_dict_I['intensity_normalized_cv'];
 
     def __set__row__(self, experiment_id_I, sample_name_abbreviation_I, 
                  time_point_I, met_id_I,fragment_id_I,

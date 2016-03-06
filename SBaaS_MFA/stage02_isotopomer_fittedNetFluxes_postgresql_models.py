@@ -26,16 +26,16 @@ class data_stage02_isotopomer_fittedNetFluxes(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.flux=data_dict_I['flux'];
-        self.flux_stdev=data_dict_I['flux_stdev'];
-        self.flux_lb=data_dict_I['flux_lb'];
-        self.flux_ub=data_dict_I['flux_ub'];
-        self.flux_units=data_dict_I['flux_units'];
-        self.used_=data_dict_I['used_'];
-        self.comment_=data_dict_I['comment_'];
-        self.simulation_id=data_dict_I['simulation_id'];
-        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
-        self.rxn_id=data_dict_I['rxn_id'];
+        self.flux=row_dict_I['flux'];
+        self.flux_stdev=row_dict_I['flux_stdev'];
+        self.flux_lb=row_dict_I['flux_lb'];
+        self.flux_ub=row_dict_I['flux_ub'];
+        self.flux_units=row_dict_I['flux_units'];
+        self.used_=row_dict_I['used_'];
+        self.comment_=row_dict_I['comment_'];
+        self.simulation_id=row_dict_I['simulation_id'];
+        self.simulation_dateAndTime=row_dict_I['simulation_dateAndTime'];
+        self.rxn_id=row_dict_I['rxn_id'];
 
     def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,
@@ -112,18 +112,18 @@ class data_stage02_isotopomer_fittedNetFluxStatistics(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.simulation_dateAndTime=data_dict_I['simulation_dateAndTime'];
-        self.n_observableFluxes=data_dict_I['n_observableFluxes'];
-        self.n_fluxes=data_dict_I['n_fluxes'];
-        self.total_precision=data_dict_I['total_precision'];
-        self.total_observablePrecision=data_dict_I['total_observablePrecision'];
-        self.relative_nObservableFluxes=data_dict_I['relative_nObservableFluxes'];
-        self.average_observableFluxPrecision=data_dict_I['average_observableFluxPrecision'];
-        self.average_fluxPrecision=data_dict_I['average_fluxPrecision'];
-        self.flux_units=data_dict_I['flux_units'];
-        self.used_=data_dict_I['used_'];
-        self.comment_=data_dict_I['comment_'];
-        self.simulation_id=data_dict_I['simulation_id'];
+        self.simulation_dateAndTime=row_dict_I['simulation_dateAndTime'];
+        self.n_observableFluxes=row_dict_I['n_observableFluxes'];
+        self.n_fluxes=row_dict_I['n_fluxes'];
+        self.total_precision=row_dict_I['total_precision'];
+        self.total_observablePrecision=row_dict_I['total_observablePrecision'];
+        self.relative_nObservableFluxes=row_dict_I['relative_nObservableFluxes'];
+        self.average_observableFluxPrecision=row_dict_I['average_observableFluxPrecision'];
+        self.average_fluxPrecision=row_dict_I['average_fluxPrecision'];
+        self.flux_units=row_dict_I['flux_units'];
+        self.used_=row_dict_I['used_'];
+        self.comment_=row_dict_I['comment_'];
+        self.simulation_id=row_dict_I['simulation_id'];
 
     def __set__row__(self,simulation_id_I,
         simulation_dateAndTime_I,

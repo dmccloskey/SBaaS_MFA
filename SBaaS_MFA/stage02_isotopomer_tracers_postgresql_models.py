@@ -22,18 +22,18 @@ class data_stage02_isotopomer_tracers(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.supplier_reference=data_dict_I['supplier_reference'];
-        self.supplier=data_dict_I['supplier'];
-        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
-        self.comment_=data_dict_I['comment_'];
-        self.ratio=data_dict_I['ratio'];
-        self.met_atompositions=data_dict_I['met_atompositions'];
-        self.experiment_id=data_dict_I['experiment_id'];
-        self.met_elements=data_dict_I['met_elements'];
-        self.isotopomer_formula=data_dict_I['isotopomer_formula'];
-        self.met_name=data_dict_I['met_name'];
-        self.met_id=data_dict_I['met_id'];
-        self.purity=data_dict_I['purity'];
+        self.supplier_reference=row_dict_I['supplier_reference'];
+        self.supplier=row_dict_I['supplier'];
+        self.sample_name_abbreviation=row_dict_I['sample_name_abbreviation'];
+        self.comment_=row_dict_I['comment_'];
+        self.ratio=row_dict_I['ratio'];
+        self.met_atompositions=row_dict_I['met_atompositions'];
+        self.experiment_id=row_dict_I['experiment_id'];
+        self.met_elements=row_dict_I['met_elements'];
+        self.isotopomer_formula=row_dict_I['isotopomer_formula'];
+        self.met_name=row_dict_I['met_name'];
+        self.met_id=row_dict_I['met_id'];
+        self.purity=row_dict_I['purity'];
 
     def __set__row__(self,experiment_id_I,
             sample_name_abbreviation_I,

@@ -50,20 +50,4 @@ class stage02_isotopomer_fittedData_execute(stage02_isotopomer_fittedData_io):
                 tmp['used_'] = True;
                 tmp['comment_'] = None;
                 data_O.append(tmp);
-        for d in data_O:
-            row = None;
-            row = data_stage02_isotopomer_fittedFluxStatistics(
-                d['simulation_id'],
-                d['simulation_dateAndTime'],
-                d['n_fluxes'],
-                d['n_observableFluxes'],
-                d['total_precision'],
-                d['total_observablePrecision'],
-                d['relative_nObservableFluxes'],
-                d['average_observableFluxPrecision'],
-                d['average_fluxPrecision'],
-                d['flux_units'],
-                d['used_'],
-                d['comment_']);
-            self.session.add(row);
-        self.session.commit();
+        self.add_data_stage02_isotopomer_fittedFluxStatistics(data_O);

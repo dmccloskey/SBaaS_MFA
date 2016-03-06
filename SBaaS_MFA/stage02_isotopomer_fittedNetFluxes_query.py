@@ -457,3 +457,14 @@ class stage02_isotopomer_fittedNetFluxes_query(sbaas_template_query):
                 except SQLAlchemyError as e:
                     print(e);
             self.session.commit();
+    def add_data_stage02_isotopomer_fittedNetFluxStatistics(self, data_I):
+        '''add rows of data_stage02_isotopomer_fittedNetFluxStatistics'''
+        if data_I:
+            for d in data_I:
+                try:
+                    data_add = data_stage02_isotopomer_fittedNetFluxStatistics(d
+                        );
+                    self.session.add(data_add);
+                except SQLAlchemyError as e:
+                    print(e);
+            self.session.commit();

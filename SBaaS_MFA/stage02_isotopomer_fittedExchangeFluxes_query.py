@@ -408,4 +408,15 @@ class stage02_isotopomer_fittedExchangeFluxes_query(sbaas_template_query):
                 except SQLAlchemyError as e:
                     print(e);
             self.session.commit();
+    def add_data_stage02_isotopomer_fittedExchangeFluxStatistics(self, data_I):
+        '''add rows of data_stage02_isotopomer_fittedExchangeFluxStatistics'''
+        if data_I:
+            for d in data_I:
+                try:
+                    data_add = data_stage02_isotopomer_fittedExchangeFluxStatistics(d
+                        );
+                    self.session.add(data_add);
+                except SQLAlchemyError as e:
+                    print(e);
+            self.session.commit();
 

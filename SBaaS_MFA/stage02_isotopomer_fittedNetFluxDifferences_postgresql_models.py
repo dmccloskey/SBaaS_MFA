@@ -25,20 +25,20 @@ class data_stage02_isotopomer_fittedNetFluxDifferences(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.simulation_dateAndTime_2=data_dict_I['simulation_dateAndTime_2'];
-        self.rxn_id=data_dict_I['rxn_id'];
-        self.flux_difference=data_dict_I['flux_difference'];
-        self.flux_distance=data_dict_I['flux_distance'];
-        self.significant=data_dict_I['significant'];
-        self.significant_criteria=data_dict_I['significant_criteria'];
-        self.flux_units=data_dict_I['flux_units'];
-        self.fold_change_geo=data_dict_I['fold_change_geo'];
-        self.used_=data_dict_I['used_'];
-        self.comment_=data_dict_I['comment_'];
-        self.simulation_id_2=data_dict_I['simulation_id_2'];
-        self.simulation_dateAndTime_1=data_dict_I['simulation_dateAndTime_1'];
-        self.simulation_id_1=data_dict_I['simulation_id_1'];
-        self.analysis_id=data_dict_I['analysis_id'];
+        self.simulation_dateAndTime_2=row_dict_I['simulation_dateAndTime_2'];
+        self.rxn_id=row_dict_I['rxn_id'];
+        self.flux_difference=row_dict_I['flux_difference'];
+        self.flux_distance=row_dict_I['flux_distance'];
+        self.significant=row_dict_I['significant'];
+        self.significant_criteria=row_dict_I['significant_criteria'];
+        self.flux_units=row_dict_I['flux_units'];
+        self.fold_change_geo=row_dict_I['fold_change_geo'];
+        self.used_=row_dict_I['used_'];
+        self.comment_=row_dict_I['comment_'];
+        self.simulation_id_2=row_dict_I['simulation_id_2'];
+        self.simulation_dateAndTime_1=row_dict_I['simulation_dateAndTime_1'];
+        self.simulation_id_1=row_dict_I['simulation_id_1'];
+        self.analysis_id=row_dict_I['analysis_id'];
 
     def __set__row__(self,
         analysis_id_I,

@@ -413,6 +413,16 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
                 except SQLAlchemyError as e:
                     print(e);
             self.session.commit();
+    def add_data_stage02_isotopomer_fittedFluxStatistics(self, data_I):
+        '''add rows of data_stage02_isotopomer_fittedFluxStatistics'''
+        if data_I:
+            for d in data_I:
+                try:
+                    data_add = data_stage02_isotopomer_fittedFluxStatistics(d);
+                    self.session.add(data_add);
+                except SQLAlchemyError as e:
+                    print(e);
+            self.session.commit();
     def update_data_stage02_isotopomer_fittedFluxes(self,data_I):
         #TODO:
         '''update rows of data_stage02_isotopomer_fittedFluxes'''
@@ -674,34 +684,36 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
         if data_I:
             for d in data_I:
                 try:
-                    data_add = data_stage02_isotopomer_simulationParameters(d['simulation_id'],
-                    d['simulation_dateAndTime'],
-                    d['cont_alpha'],
-                    d['cont_reltol'],
-                    d['cont_steps'],
-                    d['fit_nudge'],
-                    d['fit_reinit'],
-                    d['fit_reltol'],
-                    d['fit_starts'],
-                    d['fit_tau'],
-                    d['hpc_mcr'],
-                    d['hpc_on'],
-                    d['hpc_serve'],
-                    d['int_maxstep'],
-                    d['int_reltol'],
-                    d['int_senstol'],
-                    d['int_timeout'],
-                    d['int_tspan'],
-                    d['ms_correct'],
-                    d['oed_crit'],
-                    d['oed_reinit'],
-                    d['oed_tolf'],
-                    d['oed_tolx'],
-                    d['sim_more'],
-                    d['sim_na'],
-                    d['sim_sens'],
-                    d['sim_ss'],
-                    d['sim_tunit']);
+                    data_add = data_stage02_isotopomer_simulationParameters(d
+                    #d['simulation_id'],
+                    #d['simulation_dateAndTime'],
+                    #d['cont_alpha'],
+                    #d['cont_reltol'],
+                    #d['cont_steps'],
+                    #d['fit_nudge'],
+                    #d['fit_reinit'],
+                    #d['fit_reltol'],
+                    #d['fit_starts'],
+                    #d['fit_tau'],
+                    #d['hpc_mcr'],
+                    #d['hpc_on'],
+                    #d['hpc_serve'],
+                    #d['int_maxstep'],
+                    #d['int_reltol'],
+                    #d['int_senstol'],
+                    #d['int_timeout'],
+                    #d['int_tspan'],
+                    #d['ms_correct'],
+                    #d['oed_crit'],
+                    #d['oed_reinit'],
+                    #d['oed_tolf'],
+                    #d['oed_tolx'],
+                    #d['sim_more'],
+                    #d['sim_na'],
+                    #d['sim_sens'],
+                    #d['sim_ss'],
+                    #d['sim_tunit']
+                    );
                     self.session.add(data_add);
                 except SQLAlchemyError as e:
                     print(e);
@@ -717,6 +729,7 @@ class stage02_isotopomer_fittedData_query(sbaas_template_query):
                             ).update(
                             {'simulation_id':d['simulation_id'],
                             'simulation_dateAndTime':d['simulation_dateAndTime'],
+                            'original_filename':d['original_filename'],
                             'cont_alpha':d['cont_alpha'],
                             'cont_reltol':d['cont_reltol'],
                             'cont_steps':d['cont_steps'],

@@ -1,8 +1,6 @@
 #SBaaS
 from .stage02_isotopomer_fittedNetFluxes_io import stage02_isotopomer_fittedNetFluxes_io
 from .stage02_isotopomer_fittedData_query import stage02_isotopomer_fittedData_query
-#SBaaS
-from .stage02_isotopomer_fittedNetFluxes_postgresql_models import *
 #Resources
 from genomeScale_MFA.MFA_methods import MFA_methods
 from genomeScale_MFA.MFA_netRxns import isotopomer_netRxns
@@ -122,12 +120,15 @@ class stage02_isotopomer_fittedNetFluxes_execute(stage02_isotopomer_fittedNetFlu
                 # calculate the net flux
                 #if k=='DURIPP':
                 #    print('check');
+                #flux_average,flux_stdev,flux_lb,flux_ub,flux_units = mfamethods._calculate_netFlux_v2(flux_average_1,flux_stdev_1,flux_lb_1,flux_ub_1,flux_units_1,
+                #          flux_average_2,flux_stdev_2,flux_lb_2,flux_ub_2,flux_units_2,min_flux,max_flux)
                 flux_average,flux_stdev,flux_lb,flux_ub,flux_units = mfamethods.calculate_netFlux(flux_average_1,flux_stdev_1,flux_lb_1,flux_ub_1,flux_units_1,
                           flux_average_2,flux_stdev_2,flux_lb_2,flux_ub_2,flux_units_2,min_flux,max_flux)
                 # correct the flux stdev
                 if calculate_fluxStdevFromLBAndUB_I: flux_stdev = mfamethods.calculate_fluxStdevFromLBAndUB(flux_lb,flux_ub);
                 # correct the upper and lower bounds
                 if correct_fluxLBAndUBBounds_I:
+                    #flux_lb,flux_ub=mfamethods.correct_fluxLBAndUBBounds_manuscripts(flux_average,flux_lb,flux_ub,min_flux,max_flux);
                     flux_lb,flux_ub=mfamethods.correct_fluxLBAndUBBounds(flux_average,flux_lb,flux_ub,min_flux,max_flux);
                 else:
                     #flux_lb,flux_ub=mfamethods.correct_fluxLBAndUBBounds_zeroLBAndUBonly(flux_average,flux_lb,flux_ub,min_flux,max_flux);
@@ -179,22 +180,7 @@ class stage02_isotopomer_fittedNetFluxes_execute(stage02_isotopomer_fittedNetFlu
                                 'comment_':None})
 
         # add data to the database:
-        for d in data_O:
-            try:
-                data_add = data_stage02_isotopomer_fittedNetFluxes(d['simulation_id'],
-                d['simulation_dateAndTime'],
-                d['rxn_id'],
-                d['flux'],
-                d['flux_stdev'],
-                d['flux_lb'],
-                d['flux_ub'],
-                d['flux_units'],
-                d['used_'],
-                d['comment_']);
-                self.session.add(data_add);
-            except SQLAlchemyError as e:
-                print(e);
-        self.session.commit();
+        self.add_data_stage02_isotopomer_fittedNetFluxes(data_O);
     def execute_calculateNetFluxStatistics(self,simulation_id_I,simulation_dateAndTimes_I=[],flux_units_I=[],rxn_ids_I=[]):
         '''Calculate:
         1. # of unresolved fluxes per total # of reactions
@@ -248,23 +234,7 @@ class stage02_isotopomer_fittedNetFluxes_execute(stage02_isotopomer_fittedNetFlu
                 tmp['used_'] = True;
                 tmp['comment_'] = None;
                 data_O.append(tmp);
-        for d in data_O:
-            row = None;
-            row = data_stage02_isotopomer_fittedNetFluxStatistics(
-                d['simulation_id'],
-                d['simulation_dateAndTime'],
-                d['n_fluxes'],
-                d['n_observableFluxes'],
-                d['total_precision'],
-                d['total_observablePrecision'],
-                d['relative_nObservableFluxes'],
-                d['average_observableFluxPrecision'],
-                d['average_fluxPrecision'],
-                d['flux_units'],
-                d['used_'],
-                d['comment_']);
-            self.session.add(row);
-        self.session.commit();
+        self.add_data_stage02_isotopomer_fittedNetFluxStatistics(data_O);
     def execute_removePoorPrecisionFluxes(self,simulation_id_I,simulation_dateAndTimes_I=[],flux_units_I=[],rxn_ids_I=[]):
         '''remove poor precision net fluxes
         poor precision net fluxes are those with a standard deviation

@@ -19,14 +19,14 @@ class data_stage02_isotopomer_simulation(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.mapping_id=data_dict_I['mapping_id'];
-        self.used_=data_dict_I['used_'];
-        self.comment_=data_dict_I['comment_'];
-        self.model_id=data_dict_I['model_id'];
-        self.simulation_id=data_dict_I['simulation_id'];
-        self.experiment_id=data_dict_I['experiment_id'];
-        self.time_point=data_dict_I['time_point'];
-        self.sample_name_abbreviation=data_dict_I['sample_name_abbreviation'];
+        self.mapping_id=row_dict_I['mapping_id'];
+        self.used_=row_dict_I['used_'];
+        self.comment_=row_dict_I['comment_'];
+        self.model_id=row_dict_I['model_id'];
+        self.simulation_id=row_dict_I['simulation_id'];
+        self.experiment_id=row_dict_I['experiment_id'];
+        self.time_point=row_dict_I['time_point'];
+        self.sample_name_abbreviation=row_dict_I['sample_name_abbreviation'];
 
     def __set__row__(self,
             simulation_id_I,

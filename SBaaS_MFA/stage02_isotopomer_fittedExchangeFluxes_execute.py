@@ -2,8 +2,6 @@
 from .stage02_isotopomer_fittedExchangeFluxes_io import stage02_isotopomer_fittedExchangeFluxes_io
 from .stage02_isotopomer_fittedNetFluxes_query import stage02_isotopomer_fittedNetFluxes_query
 from .stage02_isotopomer_fittedData_query import stage02_isotopomer_fittedData_query
-#SBaaS
-from .stage02_isotopomer_fittedExchangeFluxes_postgresql_models import *
 #Resources
 from genomeScale_MFA.MFA_methods import MFA_methods
 from genomeScale_MFA.MFA_netRxns import isotopomer_netRxns
@@ -261,33 +259,4 @@ class stage02_isotopomer_fittedExchangeFluxes_execute(stage02_isotopomer_fittedE
                 tmp['used_'] = True;
                 tmp['comment_'] = None;
                 data_O.append(tmp);
-        for d in data_O:
-            row = None;
-            row = data_stage02_isotopomer_fittedExchangeFluxStatistics(
-                d['simulation_id'],
-                d['simulation_dateAndTime'],
-                d['n_fluxes'],
-                d['n_observableFluxes'],
-                d['total_precision'],
-                d['total_observablePrecision'],
-                d['relative_nObservableFluxes'],
-                d['average_observableFluxPrecision'],
-                d['average_fluxPrecision'],
-                d['flux_units'],
-                d['used_'],
-                d['comment_']);
-            self.session.add(row);
-        self.session.commit();
-    def execute_removePoorPrecisionFluxes(self,simulation_id_I,simulation_dateAndTimes_I=[],flux_units_I=[],rxn_ids_I=[]):
-        '''remove poor precision net fluxes
-        poor precision net fluxes are those with a standard deviation
-        calculated from 95% confidence intervals that is greater than
-        poor_precision_threshold (default=4.0) * average standard deviation
-        INPUT:
-        poor_precision_threshold_I = float, default = 4.0
-        '''
-
-        #loop over simulations,units
-        #flux_O,flux_stdev_O,flux_lb_O,flux_ub_O,flux_units_O=ex02.get_fluxes_simulationIDAndSimulationDateAndTimeAndFluxUnits_dataStage02IsotopomerfittedExchangeFluxes('WTEColi_113C80_U13C20_02_140407_iDM2014_full04_OxicWtGlc_3_noCofactorsMS',"2015-09-19 17:02:17","mmol*gDCW-1*hr-1");
-        #flux_stdev_average = numpy.average(flux_stdev_O);
-        #loop over each reaction and remove stdev that does not meet criteria
+        self.add_data_stage02_isotopomer_fittedExchangeFluxStatistics(data_O);
