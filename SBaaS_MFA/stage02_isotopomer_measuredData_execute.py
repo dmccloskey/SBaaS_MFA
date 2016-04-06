@@ -241,21 +241,21 @@ class stage02_isotopomer_measuredData_execute(stage02_isotopomer_measuredData_io
     def execute_makeMeasuredFluxes(self,experiment_id_I, metID2RxnID_I = {}, sample_name_abbreviations_I = [], met_ids_I = [],snaIsotopomer2snaPhysiology_I={},
                                    correct_EX_glc_LPAREN_e_RPAREN_I = True):
         '''Collect and flux data from data_stage01_physiology_ratesAverages for fluxomics simulation
-        Input:
-           metID2RxnID_I = e.g. {'glc-D':{'model_id':'140407_iDM2014','rxn_id':'EX_glc_LPAREN_e_RPAREN_'},
-                                'ac':{'model_id':'140407_iDM2014','rxn_id':'EX_ac_LPAREN_e_RPAREN_'},
-                                'succ':{'model_id':'140407_iDM2014','rxn_id':'EX_succ_LPAREN_e_RPAREN_'},
-                                'lac-L':{'model_id':'140407_iDM2014','rxn_id':'EX_lac_DASH_L_LPAREN_e_RPAREN_'},
-                                'biomass':{'model_id':'140407_iDM2014','rxn_id':'Ec_biomass_iJO1366_WT_53p95M'}};
-           snaIsotopomer2snaPhysiology_I = {'OxicEvo04Ecoli13CGlc':'OxicEvo04EcoliGlc',
-                                'OxicEvo04gndEcoli13CGlc':'OxicEvo04gndEcoliGlc',
-                                'OxicEvo04pgiEcoli13CGlc':'OxicEvo04pgiEcoliGlc',
-                                'OxicEvo04sdhCBEcoli13CGlc':'OxicEvo04sdhCBEcoliGlc',
-                                'OxicEvo04tpiAEcoli13CGlc':'OxicEvo04tpiAEcoliGlc'}
+        INPUT:
+        metID2RxnID_I = e.g. {'glc-D':{'model_id':'140407_iDM2014','rxn_id':'EX_glc_LPAREN_e_RPAREN_'},
+                            'ac':{'model_id':'140407_iDM2014','rxn_id':'EX_ac_LPAREN_e_RPAREN_'},
+                            'succ':{'model_id':'140407_iDM2014','rxn_id':'EX_succ_LPAREN_e_RPAREN_'},
+                            'lac-L':{'model_id':'140407_iDM2014','rxn_id':'EX_lac_DASH_L_LPAREN_e_RPAREN_'},
+                            'biomass':{'model_id':'140407_iDM2014','rxn_id':'Ec_biomass_iJO1366_WT_53p95M'}};
+        snaIsotopomer2snaPhysiology_I = {'OxicEvo04Ecoli13CGlc':'OxicEvo04EcoliGlc',
+                            'OxicEvo04gndEcoli13CGlc':'OxicEvo04gndEcoliGlc',
+                            'OxicEvo04pgiEcoli13CGlc':'OxicEvo04pgiEcoliGlc',
+                            'OxicEvo04sdhCBEcoli13CGlc':'OxicEvo04sdhCBEcoliGlc',
+                            'OxicEvo04tpiAEcoli13CGlc':'OxicEvo04tpiAEcoliGlc'}
+        TODO:
+        Need to implement a way to detect the direction of the reaction,
+            and change direction of the rate accordingly
         '''
-        '''TODO:'''
-        #   Need to implement a way to detect the direction of the reaction,
-        #   and change direction of the rate accordingly
 
         data_O = [];
         # get sample names and sample name abbreviations
