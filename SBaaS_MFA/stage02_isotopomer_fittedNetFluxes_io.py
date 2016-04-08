@@ -9,6 +9,7 @@ from io_utilities.base_importData import base_importData
 from io_utilities.base_exportData import base_exportData
 from genomeScale_MFA.MFA_methods import MFA_methods
 from SBaaS_models.models_escherMaps_query import models_escherMaps_query
+from ddt_python.ddt_container import ddt_container
 import numpy
 
 class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_query,
@@ -179,7 +180,7 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
                 #    data_O.append(row);
                 elif row['flux']==0.0:
                     row['simulation_dateAndTime'] = self.convert_datetime2string(row['simulation_dateAndTime']);
-                    row['flux_units'] = row['flux_units'].replace('*','x');
+                    #row['flux_units'] = row['flux_units'].replace('*','x');
                     row['flux_lb_stdev'] = 0.0;
                     row['flux_ub_stdev'] = 0.0;
                     row['flux_mean'] = numpy.mean([row['flux_lb'],row['flux_ub']]);
@@ -217,7 +218,7 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
             'tileclass':"panel panel-default",'rowclass':"row",'colclass':"col-sm-12"};
         formparameters_O = {'htmlid':'filtermenuform1',"htmltype":'form_01',"formsubmitbuttonidtext":{'id':'submit1','text':'submit'},"formresetbuttonidtext":{'id':'reset1','text':'reset'},"formupdatebuttonidtext":{'id':'update1','text':'update'}};
         formtileparameters_O.update(formparameters_O);
-        svgparameters_O = {"svgtype":'boxandwhiskersplot2d_01',"svgkeymap":[data1_keymap,data1_keymap],
+        svgparameters_O = {"svgtype":'boxandwhiskersplot2d_02',"svgkeymap":[data1_keymap,data1_keymap],
                             'svgid':'svg1',
                             "svgmargin":{ 'top': 50, 'right': 350, 'bottom': 50, 'left': 50 },
                             "svgwidth":750,"svgheight":350,
@@ -236,21 +237,16 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
         tabletileparameters_O.update(tableparameters_O);
         parametersobject_O = [formtileparameters_O,svgtileparameters_O,tabletileparameters_O];
         tile2datamap_O = {"filtermenu1":[0],"tile2":[0],"tile3":[0]};
+
         # dump the data to a json file
-        data_str = 'var ' + 'data' + ' = ' + json.dumps(dataobject_O) + ';';
-        parameters_str = 'var ' + 'parameters' + ' = ' + json.dumps(parametersobject_O) + ';';
-        tile2datamap_str = 'var ' + 'tile2datamap' + ' = ' + json.dumps(tile2datamap_O) + ';';
+        ddtutilities = ddt_container(parameters_I = parametersobject_O,data_I = dataobject_O,tile2datamap_I = tile2datamap_O,filtermenu_I = None);
         if data_dir_I=='tmp':
-            filename_str = settings.visualization_data + '/tmp/ddt_data.js'
-        elif data_dir_I=='project':
-            filename_str = settings.visualization_data + '/project/' + analysis_id_I + '_data_stage02_isotopomer_fittedNetFluxes' + '.js'
+            filename_str = self.settings['visualization_data'] + '/tmp/ddt_data.js'
         elif data_dir_I=='data_json':
-            data_json_O = data_str + '\n' + parameters_str + '\n' + tile2datamap_str;
+            data_json_O = ddtutilities.get_allObjects_js();
             return data_json_O;
         with open(filename_str,'w') as file:
-            file.write(data_str);
-            file.write(parameters_str);
-            file.write(tile2datamap_str);
+            file.write(ddtutilities.get_allObjects());
     def export_dataStage02IsotopomerFluxMap_js(self,analysis_id_I,simulation_id_I = None,data_dir_I="tmp"):
         '''Export flux map for viewing'''
         
@@ -337,22 +333,14 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
                 "filtermenusubmitbuttonid":"submit2","filtermenuresetbuttonid":"reset2",
                 "filtermenuupdatebuttonid":"update2"}];
         # dump the data to a json file
-        data_str = 'var ' + 'data' + ' = ' + json.dumps(dataobject_O) + ';';
-        parameters_str = 'var ' + 'parameters' + ' = ' + json.dumps(parametersobject_O) + ';';
-        tile2datamap_str = 'var ' + 'tile2datamap' + ' = ' + json.dumps(tile2datamap_O) + ';';
-        filtermenu_str = 'var ' + 'filtermenu' + ' = ' + json.dumps(filtermenuobject_O) + ';';
+        ddtutilities = ddt_container(parameters_I = parametersobject_O,data_I = dataobject_O,tile2datamap_I = tile2datamap_O,filtermenu_I = filtermenuobject_O);
         if data_dir_I=='tmp':
-            filename_str = settings.visualization_data + '/tmp/ddt_data.js'
-        elif data_dir_I=='project':
-            filename_str = settings.visualization_data + '/project/' + analysis_id_I + '_data_stage02_isotopomer_fittedNetFluxes' + '.js'
+            filename_str = self.settings['visualization_data'] + '/tmp/ddt_data.js'
         elif data_dir_I=='data_json':
-            data_json_O = data_str + '\n' + parameters_str + '\n' + tile2datamap_str + '\n' + filtermenu_str;
+            data_json_O = ddtutilities.get_allObjects_js();
             return data_json_O;
         with open(filename_str,'w') as file:
-            file.write(data_str);
-            file.write(parameters_str);
-            file.write(tile2datamap_str);
-            file.write(filtermenu_str);
+            file.write(ddtutilities.get_allObjects());
     def export_data_stage02_isotopomer_fittedNetFluxes_csv(self,simulation_ids_I,filename_O):
         """export data_stage02_isotopomer_fittedNetFluxes
         INPUT:
