@@ -7,10 +7,18 @@ from genomeScale_MFA.MFA_netRxns import isotopomer_netRxns
 
 class stage02_isotopomer_fittedNetFluxes_execute(stage02_isotopomer_fittedNetFluxes_io,
                                                     stage02_isotopomer_fittedData_query,):
-    def execute_makeNetFluxes(self, simulation_id_I,simulation_dateAndTimes_I=[],normalize_rxn_id_I=None,convert_netRxn2IndividualRxns_I=False,
-                              calculate_fluxStdevFromLBAndUB_I=True,calculate_fluxAverageFromLBAndUB_I=False,substitute_zeroFluxForNone_I=True,
-                              correct_fluxLBAndUBBounds_I=True,
-                              lower_bound_I=None,upper_bound_I=None):
+    def execute_makeNetFluxes(self,
+                    simulation_id_I,
+                    simulation_dateAndTimes_I=[],
+                    normalize_rxn_id_I=None,
+                    convert_netRxn2IndividualRxns_I=False,
+                    calculate_fluxStdevFromLBAndUB_I=True,
+                    calculate_fluxAverageFromLBAndUB_I=False,
+                    substitute_zeroFluxForNone_I=True,
+                    correct_fluxLBAndUBBounds_I=True,
+                    lower_bound_I=None,
+                    upper_bound_I=None
+                    ):
         '''Determine the net flux through a reaction
         INPUT:
         normalize_rxn_id_I = rxn_id to normalize all fluxes to
@@ -117,8 +125,8 @@ class stage02_isotopomer_fittedNetFluxes_execute(stage02_isotopomer_fittedNetFlu
                         flux_average_1,flux_stdev_1,flux_lb_1,flux_ub_1,flux_units_1=mfamethods.normalize_flux(normalize_rxn_id_I,flux_average_norm,flux_stdev_norm,flux_lb_norm,flux_ub_norm,flux_average_1,flux_stdev_1,flux_lb_1,flux_ub_1);
                     if flux_units_2!='':
                         flux_average_2,flux_stdev_2,flux_lb_2,flux_ub_2,flux_units_2=mfamethods.normalize_flux(normalize_rxn_id_I,flux_average_norm,flux_stdev_norm,flux_lb_norm,flux_ub_norm,flux_average_2,flux_stdev_2,flux_lb_2,flux_ub_2);
-                # calculate the net flux
-                #if k=='DURIPP':
+                ## calculate the net flux
+                #if k=='PGM':
                 #    print('check');
                 #flux_average,flux_stdev,flux_lb,flux_ub,flux_units = mfamethods._calculate_netFlux_v2(flux_average_1,flux_stdev_1,flux_lb_1,flux_ub_1,flux_units_1,
                 #          flux_average_2,flux_stdev_2,flux_lb_2,flux_ub_2,flux_units_2,min_flux,max_flux)

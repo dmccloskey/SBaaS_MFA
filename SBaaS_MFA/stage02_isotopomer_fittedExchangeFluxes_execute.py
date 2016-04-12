@@ -128,8 +128,8 @@ class stage02_isotopomer_fittedExchangeFluxes_execute(stage02_isotopomer_fittedE
                     flux_average_net,flux_stdev_net,flux_lb_net,flux_ub_net,flux_units_net = self.get_flux_simulationIDAndSimulationDateAndTimeAndFluxUnitsAndRxnID_dataStage02IsotopomerfittedNetFluxes(
                         simulation_id_I,simulation_dateAndTime,flux_units_2,k);
                 ## calculate the net flux
-                #if k=='SUCOAS':
-                #    print 'check';
+                #if k=='PGM':
+                #    print('check');
                 flux_average,flux_stdev,flux_lb,flux_ub,flux_units,\
                     flux_normalized_average,flux_normalized_stdev,flux_normalized_lb,flux_normalized_ub,flux_normalized_units = mfamethods.calculate_exchangeFlux(
                     flux_average_1,flux_stdev_1,flux_lb_1,flux_ub_1,flux_units_1,
