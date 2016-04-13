@@ -21,21 +21,17 @@ class data_stage02_isotopomer_dendrogram(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.row_pdist_metric=row_dict_I['row_pdist_metric'];
-        self.row_linkage_method=row_dict_I['row_linkage_method'];
-        self.value_units=row_dict_I['value_units'];
-        self.used_=row_dict_I['used_'];
         self.comment_=row_dict_I['comment_'];
         self.analysis_id=row_dict_I['analysis_id'];
-        self.col_index=row_dict_I['col_index'];
-        self.row_index=row_dict_I['row_index'];
-        self.value=row_dict_I['value'];
-        self.col_leaves=row_dict_I['col_leaves'];
-        self.row_leaves=row_dict_I['row_leaves'];
-        self.col_label=row_dict_I['col_label'];
-        self.row_label=row_dict_I['row_label'];
-        self.col_pdist_metric=row_dict_I['col_pdist_metric'];
-        self.col_linkage_method=row_dict_I['col_linkage_method'];
+        self.leaves=row_dict_I['leaves'];
+        self.icoord=row_dict_I['icoord'];
+        self.dcoord=row_dict_I['dcoord'];
+        self.ivl=row_dict_I['ivl'];
+        self.colors=row_dict_I['colors'];
+        self.pdist_metric=row_dict_I['pdist_metric'];
+        self.linkage_method=row_dict_I['linkage_method'];
+        self.value_units=row_dict_I['value_units'];
+        self.used_=row_dict_I['used_'];
 
     def __set__row__(self,analysis_id_I,
                 leaves_I,
@@ -103,17 +99,21 @@ class data_stage02_isotopomer_heatmap(Base):
     def __init__(self, 
                 row_dict_I,
                 ):
-        self.used_=row_dict_I['used_'];
-        self.value_units=row_dict_I['value_units'];
-        self.linkage_method=row_dict_I['linkage_method'];
-        self.pdist_metric=row_dict_I['pdist_metric'];
-        self.colors=row_dict_I['colors'];
-        self.ivl=row_dict_I['ivl'];
-        self.dcoord=row_dict_I['dcoord'];
-        self.icoord=row_dict_I['icoord'];
-        self.leaves=row_dict_I['leaves'];
+        self.col_linkage_method=row_dict_I['col_linkage_method'];
+        self.row_pdist_metric=row_dict_I['row_pdist_metric'];
+        self.col_index=row_dict_I['col_index'];
+        self.row_index=row_dict_I['row_index'];
         self.analysis_id=row_dict_I['analysis_id'];
         self.comment_=row_dict_I['comment_'];
+        self.used_=row_dict_I['used_'];
+        self.value_units=row_dict_I['value_units'];
+        self.col_pdist_metric=row_dict_I['col_pdist_metric'];
+        self.row_label=row_dict_I['row_label'];
+        self.col_label=row_dict_I['col_label'];
+        self.row_leaves=row_dict_I['row_leaves'];
+        self.col_leaves=row_dict_I['col_leaves'];
+        self.value=row_dict_I['value'];
+        self.row_linkage_method=row_dict_I['row_linkage_method'];
 
     def __set__row__(self,analysis_id_I,
                 col_index_I,

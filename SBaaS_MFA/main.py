@@ -97,36 +97,60 @@ simulation_file = [
 #    #                                    rxn_ids_I = ['ATPM','PGI','MDH','EDA','EDD','SUCOAS','PGL','PGM','PGK','ACONTa','ACONTb','GLCptspp','FUM','ENO','SUCDi','RPE','AKGDH','PDH','GAPD','MALS','CS','GND','PPC','TPI','RPI','PYK','ME1','ME2','TALA','ICDHyr','FBA','PFK','ICL','PPCK']
 #    #                                    )
 
-#make the fittedExchangeFluxes table
-from SBaaS_MFA.stage02_isotopomer_fittedExchangeFluxes_execute import stage02_isotopomer_fittedExchangeFluxes_execute
-exfittedExchangeFluxes01 = stage02_isotopomer_fittedExchangeFluxes_execute(session,engine,pg_settings.datadir_settings);
-for simulation_id in simulation_ids:
-    # reset fitted exchange fluxes
-    exfittedExchangeFluxes01.reset_dataStage02_isotopomer_fittedExchangeFluxes(simulation_id);
-    # break apart lumped reactions into individual reactions
-    # normalize the fluxes to glucose uptake
-    # convert irreversible reactions to net reactions
-    exfittedExchangeFluxes01.execute_makeExchangeFluxes(simulation_id,
-        normalize_rxn_id_I="EX_glc_LPAREN_e_RPAREN_",
-        convert_netRxn2IndividualRxns_I=True,
-        calculate_fluxStdevFromLBAndUB_I=True,
-        calculate_fluxAverageFromLBAndUB_I=False,
-        substitute_zeroFluxForNone_I=False,
-        lower_bound_I=-1000.0,upper_bound_I=1000.0);
-    #make net reactions
-    exfittedExchangeFluxes01.execute_makeExchangeFluxes(simulation_id,
-        normalize_rxn_id_I=None,
-        convert_netRxn2IndividualRxns_I=False,
-        calculate_fluxStdevFromLBAndUB_I=True,
-        calculate_fluxAverageFromLBAndUB_I=False,
-        substitute_zeroFluxForNone_I=False,
-        lower_bound_I=-1000.0,upper_bound_I=1000.0);
-    # reset the net flux statistics
-    exfittedExchangeFluxes01.reset_dataStage02_isotopomer_fittedExchangeFluxStatistics(simulation_id);
-    # calculate the net flux statistics
-    exfittedExchangeFluxes01.execute_calculateExchangeFluxStatistics(simulation_id,flux_units_I = ['EX_glc_LPAREN_e_RPAREN__normalized'])
+##make the fittedExchangeFluxes table
+#from SBaaS_MFA.stage02_isotopomer_fittedExchangeFluxes_execute import stage02_isotopomer_fittedExchangeFluxes_execute
+#exfittedExchangeFluxes01 = stage02_isotopomer_fittedExchangeFluxes_execute(session,engine,pg_settings.datadir_settings);
+#for simulation_id in simulation_ids:
+#    # reset fitted exchange fluxes
+#    exfittedExchangeFluxes01.reset_dataStage02_isotopomer_fittedExchangeFluxes(simulation_id);
+#    # break apart lumped reactions into individual reactions
+#    # normalize the fluxes to glucose uptake
+#    # convert irreversible reactions to net reactions
+#    exfittedExchangeFluxes01.execute_makeExchangeFluxes(simulation_id,
+#        normalize_rxn_id_I="EX_glc_LPAREN_e_RPAREN_",
+#        convert_netRxn2IndividualRxns_I=True,
+#        calculate_fluxStdevFromLBAndUB_I=True,
+#        calculate_fluxAverageFromLBAndUB_I=False,
+#        substitute_zeroFluxForNone_I=False,
+#        lower_bound_I=-1000.0,upper_bound_I=1000.0);
+#    #make net reactions
+#    exfittedExchangeFluxes01.execute_makeExchangeFluxes(simulation_id,
+#        normalize_rxn_id_I=None,
+#        convert_netRxn2IndividualRxns_I=False,
+#        calculate_fluxStdevFromLBAndUB_I=True,
+#        calculate_fluxAverageFromLBAndUB_I=False,
+#        substitute_zeroFluxForNone_I=False,
+#        lower_bound_I=-1000.0,upper_bound_I=1000.0);
+#    # reset the net flux statistics
+#    exfittedExchangeFluxes01.reset_dataStage02_isotopomer_fittedExchangeFluxStatistics(simulation_id);
+#    # calculate the net flux statistics
+#    exfittedExchangeFluxes01.execute_calculateExchangeFluxStatistics(simulation_id,flux_units_I = ['EX_glc_LPAREN_e_RPAREN__normalized'])
     #exfittedExchangeFluxes01.execute_calculateExchangeFluxStatistics(simulation_id,flux_units_I = ['mmol*gDCW-1*hr-1'])
     #exfittedExchangeFluxes01.execute_calculateExchangeFluxStatistics(simulation_id,
     #                                    flux_units_I = ['EX_glc_LPAREN_e_RPAREN__normalized'],
     #                                    rxn_ids_I = ['ATPM','PGI','MDH','EDA','EDD','SUCOAS','PGL','PGM','PGK','ACONTa','ACONTb','GLCptspp','FUM','ENO','SUCDi','RPE','AKGDH','PDH','GAPD','MALS','CS','GND','PPC','TPI','RPI','PYK','ME1','ME2','TALA','ICDHyr','FBA','PFK','ICL','PPCK']
     #                                    )
+
+#make the heatmap table
+from SBaaS_MFA.stage02_isotopomer_heatmap_execute import stage02_isotopomer_heatmap_execute
+exheatmap01 = stage02_isotopomer_heatmap_execute(session,engine,pg_settings.datadir_settings);
+exheatmap01.initialize_supportedTables();
+exheatmap01.initialize_tables();
+
+analysis_rxn_ids = [
+    ('ALEsKOs01_0_evo04_0-11_evo04ptsHIcrr_lowerGlycolysis',['GAPD','PGK','PGM','ENO','PYK','PPS','PDH']),
+    ];
+
+# generate the heatmap using default clustering methods
+for cnt,analysis_id in enumerate(analysis_rxn_ids):
+    exheatmap01.reset_dataStage02_isotopomer_heatmap(analysis_id_I = analysis_id[0]);
+    exheatmap01.reset_dataStage02_isotopomer_dendrogram(analysis_id_I = analysis_id[0]);
+    # make a heatmap preserving the order of the rxn_ids
+    exheatmap01.execute_heatmap(analysis_id_I = analysis_id[0],rxn_ids_I = analysis_id[1],
+                flux_units_I=['mmol*gDCW-1*hr-1'],
+                #flux_units_I=['EX_glc_LPAREN_e_RPAREN__normalized'],
+                observable_only_I = False,
+                order_rxnBySim_I = True,
+                order_simulation_ids_I=False,
+                order_rxn_ids_I=True,
+                rxn_id_reverse_I=['PGM','PGK','RPI']);

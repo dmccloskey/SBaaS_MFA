@@ -3,8 +3,7 @@ from .stage02_isotopomer_heatmap_io import stage02_isotopomer_heatmap_io
 from .stage02_isotopomer_fittedNetFluxes_query import stage02_isotopomer_fittedNetFluxes_query
 from .stage02_isotopomer_analysis_query import stage02_isotopomer_analysis_query
 # Resources
-from SBaaS_statistics.heatmap import heatmap
-from calculate_utilities.calculate_heatmap import calculate_heatmap
+from python_statistics.calculate_heatmap import calculate_heatmap
 import numpy
 # TODO: remove after making add methods
 from .stage02_isotopomer_heatmap_postgresql_models import *
@@ -40,8 +39,7 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
         all simulation_ids must have the same flux units (i.e., 
         '''
 
-        print('executing heatmap...');
-        #hmap = heatmap();
+        #print('executing heatmap...');
         calculateheatmap = calculate_heatmap();
         ## Pass 1: get all the data
         data_O = {};
@@ -65,7 +63,7 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
                 simulation_dateAndTimes.extend(simulation_dateAndTimes_tmp)
                 simulation_ids.extend(simulation_ids_tmp)
         for simulation_cnt_1, simulation_id_1 in enumerate(simulation_ids):
-            print('generating a heatmap for simulation_id ' + simulation_id_1);
+            #print('generating a heatmap for simulation_id ' + simulation_id_1);
             # get the units
             if flux_units_I:
                 flux_units = flux_units_I;
@@ -77,7 +75,7 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
                 if simulation_cnt_1==0:
                     data_O[fu] = {};
                     unobservable_fu_rxn_ids[fu] = set();
-                print('generating a heatmap for flux_units ' + fu);
+                #print('generating a heatmap for flux_units ' + fu);
                 # get the rxn_ids
                 if rxn_ids_I:
                     rxn_ids = rxn_ids_I;
@@ -90,7 +88,7 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
                     if simulation_cnt_1!=0 and not rxn_id in data_O[fu].keys():
                         continue;
                     rxn_ids_all.append(rxn_id);
-                    print('generating a heatmap for rxn_id ' + rxn_id);
+                    #print('generating a heatmap for rxn_id ' + rxn_id);
                     # get the fluxes
                     row = {};
                     row = self.get_row_simulationIDAndSimulationDateAndTimeAndFluxUnitsAndRxnID_dataStage02IsotopomerfittedNetFluxes(simulation_id_1,simulation_dateAndTimes[simulation_cnt_1],fu,rxn_id);
@@ -103,7 +101,7 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
                         if observable_only_I:
                             observable_1 = mfamethods.check_observableNetFlux(row['flux'],row['flux_lb'],row['flux_ub'])
                             if observable_1: 
-                                data_O[fu][rxn_id].append(row);
+                                data_O[fu][rxn_id].append(dendrogram_row_1row);
                                 unobservable_fu_rxn_ids[fu].add(rxn_id);
                         else:
                             data_O[fu][rxn_id].append(row);
@@ -129,13 +127,21 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
                     data_heatmap[fu][rxn_id]= data_tmp;
                     rxn_ids_dict[fu].add(rxn_id);
         ## Pass 3: generate the heatmap for each flux_unit
+        heatmap_O = [];
+        dendrogram_col_O = [];
+        dendrogram_row_O = [];
         for fu_cnt,fu in enumerate(list(data_heatmap.keys())):
             # generate the clustering for the heatmap
-            heatmap_O = [];
-            dendrogram_col_O = {};
-            dendrogram_row_O = {};
+            heatmap_1 = [];
+            dendrogram_col_1 = {};
+            dendrogram_row_1 = {};
+            # extract out the data {rxn_id:[{},...],...} -> [[{},...],...] -> [{},...]
+            data1 = [v for v in data_heatmap[fu].values()];
+            data2=[];
+            for d in data1:
+                data2.extend(d);
             if order_rxnBySim_I:
-                heatmap_O,dendrogram_col_O,dendrogram_row_O = calculateheatmap.make_heatmap(data_O,
+                heatmap_1,dendrogram_col_1,dendrogram_row_1 = calculateheatmap.make_heatmap(data2,
                     'rxn_id','simulation_id','flux',
                     row_pdist_metric_I=row_pdist_metric_I,row_linkage_method_I=row_linkage_method_I,
                     col_pdist_metric_I=col_pdist_metric_I,col_linkage_method_I=col_linkage_method_I,
@@ -144,7 +150,7 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
                     order_rowsFromTemplate_I=rxn_ids_I,
                     order_columnsFromTemplate_I=simulation_ids_I,);
             else:
-                heatmap_O,dendrogram_col_O,dendrogram_row_O = calculateheatmap.make_heatmap(data_O,
+                heatmap_1,dendrogram_col_1,dendrogram_row_1 = calculateheatmap.make_heatmap(data2,
                     'simulation_id','rxn_id','flux',
                     row_pdist_metric_I=row_pdist_metric_I,row_linkage_method_I=row_linkage_method_I,
                     col_pdist_metric_I=col_pdist_metric_I,col_linkage_method_I=col_linkage_method_I,
@@ -152,85 +158,24 @@ class stage02_isotopomer_heatmap_execute(stage02_isotopomer_heatmap_io,
                     filter_columns_I=rxn_ids_I,
                     order_rowsFromTemplate_I=simulation_ids_I,
                     order_columnsFromTemplate_I=rxn_ids_I,);
-            ## generate the frequency matrix data structure (sample x met)
-            #simulation_id_unique = simulation_ids;
-            #rxn_ids_unique = list(rxn_ids_dict[fu]);
-            #if order_simulation_ids_I:
-            #    simulation_id_unique = hmap.order_labelsFromTemplate(simulation_id_unique,simulation_ids_I);
-            #if order_rxn_ids_I:
-            #    rxn_ids_unique = hmap.order_labelsFromTemplate(rxn_ids_unique,rxn_ids_I);
-            #col_cnt = 0;
-            #if order_rxnBySim_I:
-            #    # order 1: rxn x sample
-            #    data_O = numpy.zeros((len(rxn_ids_unique),len(simulation_id_unique)));
-            #    for rxn_id_cnt,rxn_id in enumerate(rxn_ids_unique): 
-            #        for simulation_id_cnt,simulation_id in enumerate(simulation_id_unique):
-            #            for row in data_heatmap[fu][rxn_id]:
-            #                if row['simulation_id'] == simulation_id and row['rxn_id'] == rxn_id:
-            #                    data_O[rxn_id_cnt,simulation_id_cnt] = row['flux'];
-            #        col_cnt+=1;
-            #else:
-            #    # order 2: sample x rxn
-            #    data_O = numpy.zeros((len(simulation_id_unique),len(rxn_ids_unique)));
-            #    for simulation_id_cnt,simulation_id in enumerate(simulation_id_unique): #all lineages for sample j / met i
-            #        for rxn_id_cnt,rxn_id in enumerate(rxn_ids_unique): #all mets i for sample j
-            #            for row in data_heatmap[fu][rxn_id]:
-            #                if row['simulation_id'] == simulation_id and row['rxn_id'] == rxn_id:
-            #                    data_O[simulation_id_cnt,rxn_id_cnt] = row['flux'];
-            #        col_cnt+=1;
-            ## generate the clustering for the heatmap
-            #heatmap_O = [];
-            #dendrogram_col_O = {};
-            #dendrogram_row_O = {};
-            #if order_rxnBySim_I:
-            #    heatmap_O,dendrogram_col_O,dendrogram_row_O = hmap._make_heatmap(data_O,rxn_ids_unique,simulation_id_unique,
-            #        row_pdist_metric_I=row_pdist_metric_I,row_linkage_method_I=row_linkage_method_I,
-            #        col_pdist_metric_I=col_pdist_metric_I,col_linkage_method_I=col_linkage_method_I);
-            #else:
-            #    heatmap_O,dendrogram_col_O,dendrogram_row_O = hmap._make_heatmap(data_O,simulation_id_unique,rxn_ids_unique,
-            #        row_pdist_metric_I=row_pdist_metric_I,row_linkage_method_I=row_linkage_method_I,
-            #        col_pdist_metric_I=col_pdist_metric_I,col_linkage_method_I=col_linkage_method_I);
             # add data to to the database for the heatmap
-            for d in heatmap_O:
-                row = None;
-                row = data_stage02_isotopomer_heatmap(
-                    analysis_id_I,
-                    d['col_index'],
-                    d['row_index'],
-                    d['value'],
-                    d['col_leaves'],
-                    d['row_leaves'],
-                    d['col_label'],
-                    d['row_label'],
-                    d['col_pdist_metric'],
-                    d['row_pdist_metric'],
-                    d['col_linkage_method'],
-                    d['row_linkage_method'],
-                    fu, True, None);
-                self.session.add(row);
+            for d in heatmap_1:
+                d['analysis_id']=analysis_id_I;
+                d['value_units']=fu;
+                d['used_']=True;
+                d['comment_']=None;
+                heatmap_O.append(d);
             # add data to the database for the dendrograms
-            row = None;
-            row = data_stage02_isotopomer_dendrogram(
-                analysis_id_I,
-                dendrogram_col_O['leaves'],
-                dendrogram_col_O['icoord'],
-                dendrogram_col_O['dcoord'],
-                dendrogram_col_O['ivl'],
-                dendrogram_col_O['colors'],
-                dendrogram_col_O['pdist_metric'],
-                dendrogram_col_O['pdist_metric'],
-                fu, True, None);
-            self.session.add(row);
-            row = None;
-            row = data_stage02_isotopomer_dendrogram(
-                analysis_id_I,
-                dendrogram_row_O['leaves'],
-                dendrogram_row_O['icoord'],
-                dendrogram_row_O['dcoord'],
-                dendrogram_row_O['ivl'],
-                dendrogram_row_O['colors'],
-                dendrogram_row_O['pdist_metric'],
-                dendrogram_row_O['pdist_metric'],
-                fu, True, None);
-            self.session.add(row);
-        self.session.commit();
+            dendrogram_col_1['analysis_id']=analysis_id_I;
+            dendrogram_col_1['value_units']=fu;
+            dendrogram_col_1['used_']=True;
+            dendrogram_col_1['comment_']=None;
+            dendrogram_col_O.append(dendrogram_col_1);
+            dendrogram_row_1['analysis_id']=analysis_id_I;
+            dendrogram_row_1['value_units']=fu;
+            dendrogram_row_1['used_']=True;
+            dendrogram_row_1['comment_']=None;
+            dendrogram_row_O.append(dendrogram_row_1);
+        self.add_rows_table('data_stage02_isotopomer_heatmap',heatmap_O);
+        self.add_rows_table('data_stage02_isotopomer_dendrogram',dendrogram_col_O);
+        self.add_rows_table('data_stage02_isotopomer_dendrogram',dendrogram_row_O);
