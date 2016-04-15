@@ -10,7 +10,7 @@ from io_utilities.base_exportData import base_exportData
 from genomeScale_MFA.MFA_methods import MFA_methods
 from SBaaS_models.models_escherMaps_query import models_escherMaps_query
 from ddt_python.ddt_container import ddt_container
-import numpy
+import numpy as np
 
 class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_query,
                                             stage02_isotopomer_analysis_query,
@@ -143,7 +143,7 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
                     #row['flux_units'] = row['flux_units'].replace('*','x');
                     row['flux_lb_stdev'] = row['flux'] - row['flux_stdev'];
                     row['flux_ub_stdev'] = row['flux'] + row['flux_stdev'];
-                    row['flux_mean'] = numpy.mean([row['flux_lb'],row['flux_ub']]);
+                    row['flux_mean'] = np.mean([row['flux_lb'],row['flux_ub']]);
                     if observable: row['observable'] = 'Yes';
                     else: row['observable'] = 'No';
                     data_O.append(row);
@@ -152,7 +152,7 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
                 #    row['flux_units'] = row['flux_units'].replace('*','x');
                 #    row['flux_lb_stdev'] = row['flux'] - row['flux_stdev'];
                 #    row['flux_ub_stdev'] = row['flux'] + row['flux_stdev'];
-                #    row['flux_mean'] = numpy.mean([row['flux_lb'],row['flux_ub']]);
+                #    row['flux_mean'] = np.mean([row['flux_lb'],row['flux_ub']]);
                 #    data_O.append(row);
                 #elif not row['flux'] is None and not observable: 
                 #    row['simulation_dateAndTime'] = self.convert_datetime2string(row['simulation_dateAndTime']);
@@ -166,7 +166,7 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
                 #    row['flux_units'] = row['flux_units'].replace('*','x');
                 #    row['flux_lb_stdev'] = 0.0;
                 #    row['flux_ub_stdev'] = 0.0;
-                #    row['flux_mean'] = numpy.mean([row['flux_lb'],row['flux_ub']]);
+                #    row['flux_mean'] = np.mean([row['flux_lb'],row['flux_ub']]);
                 #    data_O.append(row);
                 #elif row['flux']==0.0 and not observable:
                 #    row['simulation_dateAndTime'] = self.convert_datetime2string(row['simulation_dateAndTime']);
@@ -183,7 +183,7 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
                     #row['flux_units'] = row['flux_units'].replace('*','x');
                     row['flux_lb_stdev'] = 0.0;
                     row['flux_ub_stdev'] = 0.0;
-                    row['flux_mean'] = numpy.mean([row['flux_lb'],row['flux_ub']]);
+                    row['flux_mean'] = np.mean([row['flux_lb'],row['flux_ub']]);
                     if observable: row['observable'] = 'Yes';
                     else: row['observable'] = 'No';
                     data_O.append(row);
@@ -271,16 +271,16 @@ class stage02_isotopomer_fittedNetFluxes_io(stage02_isotopomer_fittedNetFluxes_q
         flux_tmp = self.get_rows_simulationID_dataStage02IsotopomerfittedNetFluxes(simulation_id_I);
         for i,row in enumerate(flux_tmp):
             observable = MFAmethods.check_observableNetFlux(row['flux'],row['flux_lb'],row['flux_ub']);
-            if not row['flux'] is None and row['flux']!=0.0 and numpy.abs(row['flux']) < 10.0:
+            if not row['flux'] is None and row['flux']!=0.0 and np.abs(row['flux']) < 10.0:
                 flux_tmp[i]['simulation_dateAndTime'] = self.convert_datetime2string(row['simulation_dateAndTime']);
                 #flux_tmp[i]['flux_units'] = self.remove_jsRegularExpressions(row['flux_units']);
                 if observable: flux_tmp[i]['observable'] = 'Yes';
                 else: flux_tmp[i]['observable'] = 'No';
                 flux.append(flux_tmp[i]);
-            elif row['flux']==0.0 and numpy.abs(numpy.mean([row['flux_lb'],row['flux_ub']]))<10.0:
+            elif row['flux']==0.0 and np.abs(np.mean([row['flux_lb'],row['flux_ub']]))<10.0:
                 flux_tmp[i]['simulation_dateAndTime'] = self.convert_datetime2string(row['simulation_dateAndTime']);
                 #flux_tmp[i]['flux_units'] = self.remove_jsRegularExpressions(row['flux_units']);
-                #flux_tmp[i]['flux'] = numpy.mean([row['flux_lb'],row['flux_ub']]);
+                #flux_tmp[i]['flux'] = np.mean([row['flux_lb'],row['flux_ub']]);
                 if observable: flux_tmp[i]['observable'] = 'Yes';
                 else: flux_tmp[i]['observable'] = 'No';
                 flux.append(flux_tmp[i]);

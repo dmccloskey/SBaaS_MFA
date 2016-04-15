@@ -209,20 +209,18 @@ class stage02_isotopomer_fittedNetFluxes_query(sbaas_template_query):
             data = self.session.query(data_stage02_isotopomer_fittedNetFluxes).filter(
                     data_stage02_isotopomer_fittedNetFluxes.simulation_id.like(simulation_id_I),
                     data_stage02_isotopomer_fittedNetFluxes.used_.is_(True)).all();
-            rows_O = [];
-            if data: 
-                for d in data:
-                    data_tmp = {'simulation_id':d.simulation_id,
-                        'simulation_dateAndTime':d.simulation_dateAndTime,
-                        'rxn_id':d.rxn_id,
-                        'flux':d.flux,
-                        'flux_stdev':d.flux_stdev,
-                        'flux_units':d.flux_units,
-                        'flux_lb':d.flux_lb,
-                        'flux_ub':d.flux_ub,
-                        'used_':d.used_,
-                        'comment_':d.comment_};
-                    rows_O.append(data_tmp);
+            rows_O = [d.__repr__dict__() for d in data];
+            return rows_O;
+        except SQLAlchemyError as e:
+            print(e);  
+    def get_rows_simulationIDAndFluxUnits_dataStage02IsotopomerfittedNetFluxes(self,simulation_id_I,flux_units_I):
+        '''Query rows that are used from data_stage02_isotopomer_fittedNetFluxes'''
+        try:
+            data = self.session.query(data_stage02_isotopomer_fittedNetFluxes).filter(
+                    data_stage02_isotopomer_fittedNetFluxes.simulation_id.like(simulation_id_I),
+                    data_stage02_isotopomer_fittedNetFluxes.flux_units.like(flux_units_I),
+                    data_stage02_isotopomer_fittedNetFluxes.used_.is_(True)).all();
+            rows_O = [d.__repr__dict__() for d in data];
             return rows_O;
         except SQLAlchemyError as e:
             print(e);  
@@ -234,21 +232,7 @@ class stage02_isotopomer_fittedNetFluxes_query(sbaas_template_query):
                     data_stage02_isotopomer_fittedNetFluxes.flux_units.like(flux_units_I),
                     data_stage02_isotopomer_fittedNetFluxes.simulation_dateAndTime==simulation_dateAndTime_I,
                     data_stage02_isotopomer_fittedNetFluxes.used_.is_(True)).all();
-            rows_O = [];
-            if data: 
-                for d in data:
-                    data_tmp = {'simulation_id':d.simulation_id,
-                        'simulation_dateAndTime':d.simulation_dateAndTime,
-                        'rxn_id':d.rxn_id,
-                        'flux':d.flux,
-                        'flux_stdev':d.flux_stdev,
-                        'flux_units':d.flux_units,
-                        'flux_lb':d.flux_lb,
-                        'flux_ub':d.flux_ub,
-                        'used_':d.used_,
-                        'comment_':d.comment_};
-                    rows_O.append(data_tmp);
-            return rows_O;
+            rows_O = [d.__repr__dict__() for d in data];
         except SQLAlchemyError as e:
             print(e);  
     def get_row_simulationIDAndSimulationDateAndTimeAndFluxUnitsAndRxnID_dataStage02IsotopomerfittedNetFluxes(self,simulation_id_I,simulation_dateAndTime_I,flux_units_I,rxn_id_I):
